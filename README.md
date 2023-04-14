@@ -3,16 +3,16 @@
 With this package, you can quickly and easily access a variety of OpenAI API endpoints, including text generation, language translation, and question answering. The package provides a convenient and intuitive interface that abstracts away the complexity of API calls, allowing you to focus on building intelligent and sophisticated applications.
 
 ## What's Implemented:
-[] [Models](https://platform.openai.com/docs/api-reference/models)
-[x] [Completions](https://platform.openai.com/docs/api-reference/completions)
-[x] [Chat](https://platform.openai.com/docs/api-reference/chat)
-[ ] [Edits](https://platform.openai.com/docs/api-reference/edits)
-[ ] [Images](https://platform.openai.com/docs/api-reference/images)
-[ ] [Embeddings](https://platform.openai.com/docs/api-reference/embeddings)
-[ ] [Audio](https://platform.openai.com/docs/api-reference/audio)
-[ ] [Files](https://platform.openai.com/docs/api-reference/files)
-[ ] [Fine-tunes](https://platform.openai.com/docs/api-reference/fine-tunes)
-[ ] [Moderations](https://platform.openai.com/docs/api-reference/moderations)
+- [ ] [Models](https://platform.openai.com/docs/api-reference/models)
+- [x] [Completions](https://platform.openai.com/docs/api-reference/completions)
+- [x] [Chat](https://platform.openai.com/docs/api-reference/chat)
+- [ ] [Edits](https://platform.openai.com/docs/api-reference/edits)
+- [ ] [Images](https://platform.openai.com/docs/api-reference/images)
+- [ ] [Embeddings](https://platform.openai.com/docs/api-reference/embeddings)
+- [ ] [Audio](https://platform.openai.com/docs/api-reference/audio)
+- [ ] [Files](https://platform.openai.com/docs/api-reference/files)
+- [ ] [Fine-tunes](https://platform.openai.com/docs/api-reference/fine-tunes)
+- [ ] [Moderations](https://platform.openai.com/docs/api-reference/moderations)
 
 ## Installation
 
