@@ -9,48 +9,25 @@ import Foundation
 
 public extension ChatCompletion {
     struct Response: Decodable, Identifiable {
-        public var id: String
-        public var object: String
-        public var created: Date
-        public var model: ModelType
-        public var choices: [Choice]
-        public var usage: Usage?
+        public let id: String
+        public let object: String
+        public let created: Date
+        public let model: ModelType
+        public let choices: [Choice]
+        public let usage: Usage?
         
-        public struct Message: Codable {
+        public struct Message: Decodable {
             /// The role of the author of this message.
-            public var role: Role
+            public let role: Role
             /// The contents of the message
-            public var content: String
-
-            public init(role: Role, content: String) {
-                self.role = role
-                self.content = content
-            }
+            public let content: String
         }
 
         
-        public struct Choice: Codable {
-            public var index: Int?
-            public var message: Message?
-            public var finishReason: String?
-            
-            public init(index: Int? = nil, message: Message? = nil, finishReason: String? = nil) {
-                self.index = index
-                self.message = message
-                self.finishReason = finishReason
-            }
-        }
-        
-        public struct Usage: Codable {
-            public var promptTokens: Int
-            public var completionTokens: Int
-            public var totalTokens: Int
-            
-            public init(promptTokens: Int, completionTokens: Int, totalTokens: Int) {
-                self.promptTokens = promptTokens
-                self.completionTokens = completionTokens
-                self.totalTokens = totalTokens
-            }
+        public struct Choice: Decodable {
+            public let index: Int?
+            public let message: Message?
+            public let finishReason: FinishReason?
         }
     }
 }

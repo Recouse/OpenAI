@@ -13,7 +13,7 @@ public struct OpenAI {
     private static let baseURL: URL = URL(string: "https://api.openai.com")!
     
     private let apiKey: String
-    
+        
     private let jsonDecoder: OAIJSONDecoder = .init()
     
     private let jsonEncoder: OAIJSONEncoder = .init()
