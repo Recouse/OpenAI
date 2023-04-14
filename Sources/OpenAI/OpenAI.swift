@@ -14,9 +14,9 @@ public struct OpenAI {
     
     private let apiKey: String
     
-    private lazy var jsonDecoder: OAIJSONDecoder = .init()
+    private let jsonDecoder: OAIJSONDecoder = .init()
     
-    private lazy var jsonEncoder: OAIJSONEncoder = .init()
+    private let jsonEncoder: OAIJSONEncoder = .init()
     
     public init(apiKey: String) {
         precondition(!apiKey.isEmpty, "API key cannot be empty.")
