@@ -1,13 +1,11 @@
 //
-//  ChatCompletion.swift
+//  ChatCompletions.swift
 //  OpenAI
 //
-//  Created by Firdavs Khaydarov on 12/04/2023.
+//  Created by Firdavs Khaydarov on 14/04/2023.
 //
 
-import Foundation
-
-public struct ChatCompletion {
+public struct ChatCompletions {
     /// The role of the author of this message.
     public enum Role: String, Codable, CaseIterable {
         case system

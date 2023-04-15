@@ -1,5 +1,5 @@
 //
-//  ChatCompletionRequest.swift
+//  ChatCompletionsBody.swift
 //  OpenAI
 //
 //  Created by Firdavs Khaydarov on 11/04/2023.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-public extension ChatCompletion {
-    struct Request: Encodable {
+public extension ChatCompletions {
+    struct Body: Encodable {
         public struct Message: Codable {
             /// The role of the author of this message.
             public var role: Role
@@ -25,7 +25,7 @@ public extension ChatCompletion {
         }
         
         /// ID of the model to use. Currently, only `gpt-3.5-turbo` and `gpt-3.5-turbo-0301` are supported.
-        public var model: ModelType
+        public var model: String
         /// The messages to generate chat completions for, in the [chat format](/docs/guides/chat/introduction).
         public var messages: [Message]
         /// What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
@@ -87,21 +87,6 @@ public extension ChatCompletion {
                 case .strings(let value): try container.encode(value)
                 }
             }
-        }
-        
-        public init(model: ModelType, messages: [Message], temperature: Double? = nil, topP: Double? = nil, n: Int? = nil, stream: Bool? = nil, stop: Stop? = nil, maxTokens: Int? = nil, presencePenalty: Double? = nil, frequencyPenalty: Double? = nil, logitBias: [Int: Int]? = nil, user: String? = nil) {
-            self.model = model
-            self.messages = messages
-            self.temperature = temperature
-            self.topP = topP
-            self.n = n
-            self.stream = stream ?? false
-            self.stop = stop
-            self.maxTokens = maxTokens
-            self.presencePenalty = presencePenalty
-            self.frequencyPenalty = frequencyPenalty
-            self.logitBias = logitBias
-            self.user = user
         }
     }
 }
