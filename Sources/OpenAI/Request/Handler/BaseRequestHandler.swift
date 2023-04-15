@@ -79,7 +79,7 @@ public struct BaseRequestHandler: RequestHandler {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = request.host
-        urlComponents.path = request.version + request.path
+        urlComponents.path = [request.version, request.path].joined(separator: "/")
         
         guard let url = urlComponents.url else {
             return nil

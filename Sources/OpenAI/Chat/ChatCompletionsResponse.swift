@@ -12,7 +12,7 @@ public extension ChatCompletions {
         public let id: String
         public let object: String
         public let created: Date
-        public let model: ChatWrapper.Model
+        public let model: Model
         public let choices: [Choice]
         public let usage: Usage?
         

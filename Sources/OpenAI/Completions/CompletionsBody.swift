@@ -1,5 +1,5 @@
 //
-//  CompletionRequest.swift
+//  CompletionsBody.swift
 //  OpenAI
 //
 //  Created by Firdavs Khaydarov on 11/04/2023.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-public extension Completion {
-    struct Request: Codable {
+public extension Completions {
+    struct Body: Codable {
         /// ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.
-        public var model: ModelType
+        public var model: String
         /// The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.
         ///
         /// Note that <|endoftext|> is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document.

@@ -5,7 +5,7 @@
 //  Created by Firdavs Khaydarov on 15/04/2023.
 //
 
-public extension ChatWrapper {
+public extension ChatCompletions {
     enum Model: String, Decodable {
         // MARK: - GTP-4
         

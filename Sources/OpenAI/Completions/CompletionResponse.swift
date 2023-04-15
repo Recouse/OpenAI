@@ -1,5 +1,5 @@
 //
-//  CompletionResponse.swift
+//  CompletionsResponse.swift
 //  OpenAI
 //
 //  Created by Firdavs Khaydarov on 11/04/2023.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-public extension Completion {
+public extension Completions {
     struct Response: Decodable, Identifiable {
         public let id: String
         public let object: String
         public let created: Date
-        public let model: ModelType
+        public let model: Model
         public let choices: [Choice]
         public let usage: Usage?
         
