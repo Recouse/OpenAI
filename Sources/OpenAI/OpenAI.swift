@@ -38,6 +38,7 @@ public struct OpenAI {
     
     let requestHandler: RequestHandler
     
+    let models: ModelsWrapper
     let completions: CompletionsWrapper
     let chat: ChatWrapper
     
@@ -45,6 +46,7 @@ public struct OpenAI {
         precondition(!apiKey.isEmpty, "API key cannot be empty.")
         self.configuration = Configuration(apiKey: apiKey, organization: organization)
         self.requestHandler = BaseRequestHandler()
+        self.models = ModelsWrapper(requestHandler: self.requestHandler, configuration: self.configuration)
         self.completions = CompletionsWrapper(requestHandler: self.requestHandler, configuration: self.configuration)
         self.chat = ChatWrapper(requestHandler: self.requestHandler, configuration: self.configuration)
     }
