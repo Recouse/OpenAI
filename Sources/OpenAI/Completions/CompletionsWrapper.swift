@@ -11,7 +11,7 @@ public struct CompletionsWrapper {
     
     public func completions(
         model: Completions.Model,
-        prompt: String,
+        prompt: [String],
         suffix: String? = nil,
         maxTokens: Int? = nil,
         temperature: Double? = nil,
@@ -51,7 +51,7 @@ public struct CompletionsWrapper {
 
     public func completionsStream(
         model: Completions.Model,
-        prompt: String,
+        prompt: [String],
         suffix: String? = nil,
         maxTokens: Int? = nil,
         temperature: Double? = nil,
