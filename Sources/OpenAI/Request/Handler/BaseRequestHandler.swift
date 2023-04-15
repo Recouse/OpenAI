@@ -19,10 +19,7 @@ public struct BaseRequestHandler: RequestHandler {
     }
     
     public func perform<T>(for model: T.Type, with request: Request) async throws -> T where T: Decodable {
-        guard let urlRequest = urlRequest(from: request) else {
-            throw OpenAIError.cannotBuildURLRequest
-        }
-        
+        let urlRequest = urlRequest(from: request)
         let (data, _) = try await urlSession.data(for: urlRequest)
         let parsed = try decoder.decode(T.self, from: data)
         return parsed
@@ -32,11 +29,7 @@ public struct BaseRequestHandler: RequestHandler {
         for model: T.Type,
         with request: Request
     ) -> AsyncThrowingStream<T, Error> where T: Decodable {
-        guard let urlRequest = urlRequest(from: request) else {
-            return AsyncThrowingStream { continuation in
-                continuation.finish(throwing: OpenAIError.cannotBuildURLRequest)
-            }
-        }
+        let urlRequest = urlRequest(from: request)
         
         return AsyncThrowingStream { continuation in
             Task {
@@ -75,14 +68,14 @@ public struct BaseRequestHandler: RequestHandler {
         }
     }
     
-    private func urlRequest(from request: Request) -> URLRequest? {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = request.host
-        urlComponents.path = [request.version, request.path].joined(separator: "/")
-        
-        guard let url = urlComponents.url else {
-            return nil
+    private func urlRequest(from request: Request) -> URLRequest {
+        var url = URL(string: "https://\(request.host)")!
+        if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+            url.append(component: request.version)
+            url.append(component: request.path)
+        } else {
+            url.appendPathComponent(request.version)
+            url.appendPathComponent(request.path)
         }
         
         var urlRequest = URLRequest(url: url)

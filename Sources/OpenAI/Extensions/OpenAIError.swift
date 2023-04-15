@@ -6,7 +6,6 @@
 //
 
 enum OpenAIError: Error {
-    case cannotBuildURLRequest
     case streamError(description: String)
     case streamClosed
     case incompatibleModel
