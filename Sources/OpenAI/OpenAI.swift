@@ -38,12 +38,14 @@ public struct OpenAI {
     
     let requestHandler: RequestHandler
     
+    let completions: CompletionsWrapper
     let chat: ChatWrapper
     
     public init(apiKey: String, organization: String? = nil) {
         precondition(!apiKey.isEmpty, "API key cannot be empty.")
         self.configuration = Configuration(apiKey: apiKey, organization: organization)
         self.requestHandler = BaseRequestHandler()
+        self.completions = CompletionsWrapper(requestHandler: self.requestHandler, configuration: self.configuration)
         self.chat = ChatWrapper(requestHandler: self.requestHandler, configuration: self.configuration)
     }
 }
