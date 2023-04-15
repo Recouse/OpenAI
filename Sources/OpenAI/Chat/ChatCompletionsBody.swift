@@ -47,7 +47,7 @@ public extension ChatCompletions {
         /// If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message.
         public var stream: Bool
         /// Up to 4 sequences where the API will stop generating further tokens.
-        public var stop: Stop?
+        public var stop: [String]?
         /// The maximum number of tokens allowed for the generated answer. By default, the number of tokens the model can return will be (4096 - prompt tokens).
         public var maxTokens: Int?
         /// Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
@@ -66,33 +66,5 @@ public extension ChatCompletions {
         ///
         /// Example: "user-1234"
         public var user: String?
-        
-        /// Up to 4 sequences where the API will stop generating further tokens.
-        public enum Stop: Codable {
-            case string(String)
-            case strings([String])
-            
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.singleValueContainer()
-                if let value = try? container.decode(String.self) {
-                    self = .string(value)
-                } else if let value = try? container.decode([String].self) {
-                    self = .strings(value)
-                } else {
-                    throw DecodingError.dataCorruptedError(
-                        in: container,
-                        debugDescription: "Data could not be decoded as any of the expected types (String, [String])."
-                    )
-                }
-            }
-            
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.singleValueContainer()
-                switch self {
-                case .string(let value): try container.encode(value)
-                case .strings(let value): try container.encode(value)
-                }
-            }
-        }
     }
 }
