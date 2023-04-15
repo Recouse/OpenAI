@@ -56,7 +56,7 @@ public struct ChatWrapper {
         frequencyPenalty: Double? = nil,
         logitBias: [Int: Int]? = nil,
         user: String? = nil
-    ) throws -> AsyncThrowingStream<ChatCompletions.Response.Chunk, Error> {
+    ) -> AsyncThrowingStream<ChatCompletions.Response.Chunk, Error> {
         let body = ChatCompletions.Body(
             model: model.rawValue,
             messages: messages,

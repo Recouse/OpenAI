@@ -64,7 +64,7 @@ public struct CompletionsWrapper {
         bestOf: Int? = nil,
         logitBias: [Int: Int]? = nil,
         user: String? = nil
-    ) throws -> AsyncThrowingStream<Completions.Response, Error> {
+    ) -> AsyncThrowingStream<Completions.Response, Error> {
         let body = Completions.Body(
             model: model.rawValue,
             prompt: prompt,
