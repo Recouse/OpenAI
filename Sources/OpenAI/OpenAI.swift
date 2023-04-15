@@ -23,7 +23,8 @@ public struct OpenAI {
         
         var headers: HTTPHeaders {
             var headers: HTTPHeaders = [
-                "Authorization": "Bearer \(apiKey)"
+                "Authorization": "Bearer \(apiKey)",
+                "Content-Type": "application/json"
             ]
             
             if let organization {
