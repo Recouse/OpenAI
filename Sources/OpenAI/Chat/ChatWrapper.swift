@@ -12,7 +12,7 @@ public struct ChatWrapper {
     let configuration: OpenAI.Configuration
     
     public func completions(
-        model: Completions.Model,
+        model: ChatCompletions.Model,
         messages: [ChatCompletions.Body.Message],
         temperature: Double? = nil,
         topP: Double? = nil,
@@ -45,7 +45,7 @@ public struct ChatWrapper {
     }
 
     public func completionsStream(
-        model: Completions.Model,
+        model: ChatCompletions.Model,
         messages: [ChatCompletions.Body.Message],
         temperature: Double? = nil,
         topP: Double? = nil,
