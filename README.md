@@ -1,6 +1,7 @@
 # OpenAI
 
-With this package, you can quickly and easily access a variety of OpenAI API endpoints, including text generation, language translation, and question answering. The package provides a convenient and intuitive interface that abstracts away the complexity of API calls, allowing you to focus on building intelligent and sophisticated applications.
+This package lets you quickly and easily access a variety of OpenAI API endpoints. It supports 
+completions and chat streaming.
 
 ## What's Implemented:
 - [ ] [Models](https://platform.openai.com/docs/api-reference/models)
@@ -45,6 +46,30 @@ And then, include "OpenAI" as a dependency for your target:
 .target(name: "<target>", dependencies: [
     .product(name: "OpenAI", package: "OpenAI"),
 ]),
+```
+
+## Usage
+
+```swift
+import OpenAI
+
+...
+
+let client = OpenAI(apiKey: "*YOUR API KEY*")
+
+let chat = try await client.chat.completions(model: .gpt3_5_turbo, messages: [
+    .init(role: .user, content: "Say This is a test.")
+])
+
+// Using streaming
+
+let chat = client.chat.completionsStream(model: .gpt3_5_turbo, messages: [
+    .init(role: .user, content: "Say This is a test in 5 different styles.")
+])
+
+for try await chunk in chat {
+    print(chunk.choices.first?.delta.content)
+}
 ```
 
 ## Compatibility
