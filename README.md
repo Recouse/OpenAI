@@ -4,7 +4,7 @@ This package lets you quickly and easily access a variety of OpenAI API endpoint
 completions and chat streaming.
 
 ## What's Implemented:
-- [ ] [Models](https://platform.openai.com/docs/api-reference/models)
+- [x] [Models](https://platform.openai.com/docs/api-reference/models)
 - [x] [Completions](https://platform.openai.com/docs/api-reference/completions)
 - [x] [Chat](https://platform.openai.com/docs/api-reference/chat)
 - [ ] [Edits](https://platform.openai.com/docs/api-reference/edits)
