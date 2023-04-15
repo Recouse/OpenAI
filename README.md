@@ -58,13 +58,13 @@ import OpenAI
 let client = OpenAI(apiKey: "*YOUR API KEY*")
 
 let chat = try await client.chat.completions(model: .gpt3_5_turbo, messages: [
-    .init(role: .user, content: "Say This is a test.")
+    .user("Say This is a test.")
 ])
 
 // Using streaming
 
 let chat = client.chat.completionsStream(model: .gpt3_5_turbo, messages: [
-    .init(role: .user, content: "Say This is a test in 5 different styles.")
+    .user("Say This is a test in 5 different styles.")
 ])
 
 for try await chunk in chat {
