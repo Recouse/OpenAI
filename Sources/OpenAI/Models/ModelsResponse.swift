@@ -7,17 +7,10 @@
 
 public struct ModelsResponse: Decodable {
     public struct Model: Decodable, Identifiable {
-        public var id: String
-        public var object: String
-        public var created: Int
-        public var ownedBy: String
-
-        public init(id: String, object: String, created: Int, ownedBy: String) {
-            self.id = id
-            self.object = object
-            self.created = created
-            self.ownedBy = ownedBy
-        }
+        public let id: String
+        public let object: String
+        public let created: Int
+        public let ownedBy: String
     }
     
     public var data: [Model]
