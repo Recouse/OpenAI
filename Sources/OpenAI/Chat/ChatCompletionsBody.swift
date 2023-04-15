@@ -16,6 +16,12 @@ public extension ChatCompletions {
             public var content: String
             /// The name of the user in a multi-user chat
             public var name: String?
+            
+            public init(role: Role, content: String, name: String? = nil) {
+                self.role = role
+                self.content = content
+                self.name = name
+            }
 
             public static func system(_ content: String) -> Self {
                 Self(role: .system, content: content)
