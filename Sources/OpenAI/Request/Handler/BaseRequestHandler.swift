@@ -70,9 +70,9 @@ public struct BaseRequestHandler: RequestHandler {
     
     private func urlRequest(from request: Request) -> URLRequest {
         var url = URL(string: "https://\(request.host)")!
-        if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
-            url.append(component: request.version)
-            url.append(component: request.path)
+        if #available(macOS 13.0, iOS 16.0, tvOS 16.0, watchOS 9.0, *) {
+            url.append(path: request.version)
+            url.append(path: request.path)
         } else {
             url.appendPathComponent(request.version)
             url.appendPathComponent(request.path)
