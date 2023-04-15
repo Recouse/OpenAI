@@ -38,9 +38,9 @@ public struct OpenAI {
     
     let requestHandler: RequestHandler
     
-    let models: ModelsWrapper
-    let completions: CompletionsWrapper
-    let chat: ChatWrapper
+    public let models: ModelsWrapper
+    public let completions: CompletionsWrapper
+    public let chat: ChatWrapper
     
     public init(apiKey: String, organization: String? = nil) {
         precondition(!apiKey.isEmpty, "API key cannot be empty.")
