@@ -9,7 +9,7 @@ public struct CompletionsWrapper {
     let requestHandler: any RequestHandler
     let configuration: OpenAI.Configuration
     
-    public func completions(
+    public func create(
         model: Completions.Model,
         prompt: [String],
         suffix: String? = nil,
@@ -49,7 +49,7 @@ public struct CompletionsWrapper {
         return try await requestHandler.perform(for: Completions.Response.self, with: request)
     }
 
-    public func completionsStream(
+    public func createStream(
         model: Completions.Model,
         prompt: [String],
         suffix: String? = nil,
