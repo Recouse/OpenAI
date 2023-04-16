@@ -7,7 +7,7 @@ completions and chat streaming.
 - [x] [Models](https://platform.openai.com/docs/api-reference/models)
 - [x] [Completions](https://platform.openai.com/docs/api-reference/completions)
 - [x] [Chat](https://platform.openai.com/docs/api-reference/chat)
-- [ ] [Edits](https://platform.openai.com/docs/api-reference/edits)
+- [x] [Edits](https://platform.openai.com/docs/api-reference/edits)
 - [ ] [Images](https://platform.openai.com/docs/api-reference/images)
 - [ ] [Embeddings](https://platform.openai.com/docs/api-reference/embeddings)
 - [ ] [Audio](https://platform.openai.com/docs/api-reference/audio)
