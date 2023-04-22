@@ -33,7 +33,7 @@ public extension ChatCompletions {
             public let id: String
             public let object: String
             public let created: Int
-            public let model: ModelType
+            public let model: Model
             public let choices: [ChunkChoice]
             
             public struct ChunkDelta: Decodable {
