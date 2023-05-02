@@ -33,7 +33,7 @@ public struct BaseRequestHandler: RequestHandler {
         
         return AsyncThrowingStream { continuation in
             Task {
-                let eventSource = EventSource(request: urlRequest)
+                let eventSource = EventSource(request: urlRequest, maxRetryCount: 1)
                 eventSource.connect()
                 
                 for await event in eventSource.events {
