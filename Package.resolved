@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Recouse/EventSource.git",
       "state" : {
-        "revision" : "e4ccaf79e35a3acec189902d6831e6f76bd457dd",
-        "version" : "0.0.4"
+        "revision" : "fcd7152a3106d75287c7303bba40a4761e5b7f6d",
+        "version" : "0.0.5"
       }
     },
     {
