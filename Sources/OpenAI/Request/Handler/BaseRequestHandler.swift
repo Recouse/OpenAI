@@ -20,7 +20,17 @@ public struct BaseRequestHandler: RequestHandler {
     
     public func perform<T>(for model: T.Type, with request: Request) async throws -> T where T: Decodable {
         let urlRequest = urlRequest(from: request)
-        let (data, _) = try await urlSession.data(for: urlRequest)
+        let (data, response) = try await urlSession.data(for: urlRequest)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw OpenAIError.invalidHTTPResponse
+        }
+        
+        guard 200...299 ~= httpResponse.statusCode else {
+            let error = parseError(from: data, with: httpResponse.statusCode)
+            throw error
+        }
+        
         let parsed = try decoder.decode(T.self, from: data)
         return parsed
     }
@@ -42,6 +52,11 @@ public struct BaseRequestHandler: RequestHandler {
                         continue
                     case .error(let error):
                         os_log(.debug, "Received an error: %@", error.localizedDescription)
+                        if case let EventSourceError.connectionError(httpStatusCode, response) = error {
+                            let openAIError = parseError(from: response, with: httpStatusCode)
+                            continuation.finish(throwing: openAIError)
+                            break
+                        }
                         continue
                     case .message(let message):
                         guard let stringData = message.data else {
@@ -84,5 +99,14 @@ public struct BaseRequestHandler: RequestHandler {
         urlRequest.httpBody = request.body
         
         return urlRequest
+    }
+    
+    private func parseError(from data: Data, with httpStatusCode: Int) -> OpenAIError {
+        do {
+            let error = try decoder.decode(APIError.self, from: data)
+            return OpenAIError.apiError(error)
+        } catch {
+            return OpenAIError.undefinedError(httpStatusCode: httpStatusCode)
+        }
     }
 }
