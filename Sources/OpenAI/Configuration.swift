@@ -17,6 +17,8 @@ extension OpenAI {
         /// the specified organization's subscription quota.
         let organization: String?
         
+        var host: String = "api.openai.com"
+        
         var headers: HTTPHeaders {
             var headers: HTTPHeaders = [
                 "Content-Type": "application/json"

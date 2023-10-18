@@ -26,7 +26,11 @@ public struct EditsWrapper {
             topP: topP
         )
         
-        let request = EditsRequest(headers: configuration.headers, body: body)
+        let request = EditsRequest(
+            host: configuration.host,
+            headers: configuration.headers,
+            body: body
+        )
 
         return try await requestHandler.perform(for: Edits.Response.self, with: request)
     }

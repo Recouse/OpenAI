@@ -39,7 +39,11 @@ public struct ChatWrapper {
             user: user
         )
         
-        let request = ChatCompletionsRequest(headers: configuration.headers, body: body)
+        let request = ChatCompletionsRequest(
+            host: configuration.host,
+            headers: configuration.headers,
+            body: body
+        )
 
         return try await requestHandler.perform(for: ChatCompletions.Response.self, with: request)
     }
@@ -72,7 +76,11 @@ public struct ChatWrapper {
             user: user
         )
         
-        let request = ChatCompletionsRequest(headers: configuration.headers, body: body)
+        let request = ChatCompletionsRequest(
+            host: configuration.host,
+            headers: configuration.headers,
+            body: body
+        )
 
         return requestHandler.stream(for: ChatCompletions.Response.Chunk.self, with: request)
     }

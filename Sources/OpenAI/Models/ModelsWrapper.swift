@@ -11,7 +11,7 @@ public struct ModelsWrapper {
     let configuration: OpenAI.Configuration
     
     public func list() async throws -> ModelsResponse {
-        let request = ModelsRequest(headers: configuration.headers)
+        let request = ModelsRequest(host: configuration.host, headers: configuration.headers)
         return try await requestHandler.perform(for: ModelsResponse.self, with: request)
     }
 }

@@ -21,14 +21,6 @@ public extension Request {
         .openAIEncoder
     }
     
-    var host: String {
-        "api.openai.com"
-    }
-    
-    var version: String {
-        "v1"
-    }
-    
     var headers: HTTPHeaders? {
         nil
     }

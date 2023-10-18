@@ -9,11 +9,14 @@ import Foundation
 
 struct CompletionsRequest: Request {
     var method: HTTPMethod = .post
+    var host: String
+    var version: String = "v1"
     var path: String = "completions"
     var headers: HTTPHeaders?
     var body: Data?
     
-    init(headers: HTTPHeaders? = nil, body: Completions.Body) {
+    init(host: String, headers: HTTPHeaders? = nil, body: Completions.Body) {
+        self.host = host
         self.headers = headers
         self.body = try? Self.encoder.encode(body)
     }

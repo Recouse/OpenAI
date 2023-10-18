@@ -9,11 +9,14 @@ import Foundation
 
 struct ModelsRequest: Request {
     var method: HTTPMethod = .get
+    var host: String
+    var version: String = "v1"
     var path: String = "models"
     var headers: HTTPHeaders?
     var body: Data?
     
-    init(headers: HTTPHeaders? = nil) {
+    init(host: String, headers: HTTPHeaders? = nil) {
+        self.host = host
         self.headers = headers
     }
 }

@@ -19,8 +19,8 @@ public struct OpenAI {
     public let chat: ChatWrapper
     public let edits: EditsWrapper
     
-    public init(apiKey: String? = nil, organization: String? = nil) {
-        self.configuration = Configuration(apiKey: apiKey, organization: organization)
+    public init(apiKey: String? = nil, organization: String? = nil, host: String = "api.openai.com") {
+        self.configuration = Configuration(apiKey: apiKey, organization: organization, host: host)
         self.requestHandler = BaseRequestHandler()
         self.models = ModelsWrapper(requestHandler: self.requestHandler, configuration: self.configuration)
         self.completions = CompletionsWrapper(requestHandler: self.requestHandler, configuration: self.configuration)

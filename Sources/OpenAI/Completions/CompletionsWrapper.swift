@@ -44,7 +44,11 @@ public struct CompletionsWrapper {
             user: user
         )
         
-        let request = CompletionsRequest(headers: configuration.headers, body: body)
+        let request = CompletionsRequest(
+            host: configuration.host,
+            headers: configuration.headers,
+            body: body
+        )
 
         return try await requestHandler.perform(for: Completions.Response.self, with: request)
     }
@@ -84,7 +88,11 @@ public struct CompletionsWrapper {
             user: user
         )
         
-        let request = CompletionsRequest(headers: configuration.headers, body: body)
+        let request = CompletionsRequest(
+            host: configuration.host,
+            headers: configuration.headers,
+            body: body
+        )
 
         return requestHandler.stream(for: Completions.Response.self, with: request)
     }
