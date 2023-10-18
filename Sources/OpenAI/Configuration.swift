@@ -8,7 +8,7 @@
 extension OpenAI {
     struct Configuration {
         /// Open AI API key
-        let apiKey: String
+        let apiKey: String?
         
         /// Organization ID
         ///
@@ -19,9 +19,12 @@ extension OpenAI {
         
         var headers: HTTPHeaders {
             var headers: HTTPHeaders = [
-                "Authorization": "Bearer \(apiKey)",
                 "Content-Type": "application/json"
             ]
+            
+            if let apiKey {
+                headers["Authorization"] = "Bearer \(apiKey)"
+            }
             
             if let organization {
                 headers["OpenAI-Organization"] = organization

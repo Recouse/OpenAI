@@ -19,8 +19,7 @@ public struct OpenAI {
     public let chat: ChatWrapper
     public let edits: EditsWrapper
     
-    public init(apiKey: String, organization: String? = nil) {
-        precondition(!apiKey.isEmpty, "API key cannot be empty.")
+    public init(apiKey: String? = nil, organization: String? = nil) {
         self.configuration = Configuration(apiKey: apiKey, organization: organization)
         self.requestHandler = BaseRequestHandler()
         self.models = ModelsWrapper(requestHandler: self.requestHandler, configuration: self.configuration)
