@@ -7,7 +7,6 @@
 
 import EventSource
 import Foundation
-import os.log
 
 public struct OpenAI {
     let configuration: Configuration
@@ -19,12 +18,34 @@ public struct OpenAI {
     public let chat: ChatWrapper
     public let edits: EditsWrapper
     
-    public init(apiKey: String? = nil, organization: String? = nil, host: String = "api.openai.com") {
-        self.configuration = Configuration(apiKey: apiKey, organization: organization, host: host)
+    public init(
+        apiKey: String? = nil,
+        organization: String? = nil,
+        host: String = "api.openai.com",
+        additionalHeaders: HTTPHeaders = [:]
+    ) {
+        self.configuration = Configuration(
+            apiKey: apiKey,
+            organization: organization,
+            host: host,
+            additionalHeaders: additionalHeaders
+        )
         self.requestHandler = BaseRequestHandler()
-        self.models = ModelsWrapper(requestHandler: self.requestHandler, configuration: self.configuration)
-        self.completions = CompletionsWrapper(requestHandler: self.requestHandler, configuration: self.configuration)
-        self.chat = ChatWrapper(requestHandler: self.requestHandler, configuration: self.configuration)
-        self.edits = EditsWrapper(requestHandler: self.requestHandler, configuration: self.configuration)
+        self.models = ModelsWrapper(
+            requestHandler: self.requestHandler,
+            configuration: self.configuration
+        )
+        self.completions = CompletionsWrapper(
+            requestHandler: self.requestHandler,
+            configuration: self.configuration
+        )
+        self.chat = ChatWrapper(
+            requestHandler: self.requestHandler,
+            configuration: self.configuration
+        )
+        self.edits = EditsWrapper(
+            requestHandler: self.requestHandler,
+            configuration: self.configuration
+        )
     }
 }

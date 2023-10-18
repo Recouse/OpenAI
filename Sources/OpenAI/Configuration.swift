@@ -19,6 +19,8 @@ extension OpenAI {
         
         var host: String = "api.openai.com"
         
+        var additionalHeaders: HTTPHeaders = [:]
+        
         var headers: HTTPHeaders {
             var headers: HTTPHeaders = [
                 "Content-Type": "application/json"
@@ -30,6 +32,11 @@ extension OpenAI {
             
             if let organization {
                 headers["OpenAI-Organization"] = organization
+            }
+            
+            // Add additional headers
+            for header in additionalHeaders {
+                headers[header.key] = header.value
             }
             
             return headers
