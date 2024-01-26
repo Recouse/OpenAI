@@ -19,7 +19,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/Recouse/EventSource.git", from: "0.0.5")
+        .package(url: "https://github.com/Recouse/EventSource.git", from: "0.0.6")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
