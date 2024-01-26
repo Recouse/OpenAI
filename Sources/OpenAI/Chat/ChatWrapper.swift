@@ -21,6 +21,7 @@ public struct ChatWrapper {
         maxTokens: Int? = nil,
         presencePenalty: Double? = nil,
         frequencyPenalty: Double? = nil,
+        responseFormat: ResponseFormat? = nil,
         logitBias: [Int: Int]? = nil,
         user: String? = nil
     ) async throws -> ChatCompletions.Response {
@@ -35,6 +36,7 @@ public struct ChatWrapper {
             maxTokens: maxTokens,
             presencePenalty: presencePenalty,
             frequencyPenalty: frequencyPenalty,
+            responseFormat: responseFormat,
             logitBias: logitBias,
             user: user
         )
@@ -58,6 +60,7 @@ public struct ChatWrapper {
         maxTokens: Int? = nil,
         presencePenalty: Double? = nil,
         frequencyPenalty: Double? = nil,
+        responseFormat: ResponseFormat? = nil,
         logitBias: [Int: Int]? = nil,
         user: String? = nil
     ) -> AsyncThrowingStream<ChatCompletions.Response.Chunk, Error> {
@@ -72,6 +75,7 @@ public struct ChatWrapper {
             maxTokens: maxTokens,
             presencePenalty: presencePenalty,
             frequencyPenalty: frequencyPenalty,
+            responseFormat: responseFormat,
             logitBias: logitBias,
             user: user
         )
