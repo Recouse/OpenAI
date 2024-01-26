@@ -10,7 +10,7 @@ public struct CompletionsWrapper {
     let configuration: OpenAI.Configuration
     
     public func create(
-        model: Completions.Model,
+        model: ChatCompletions.Model,
         prompt: [String],
         suffix: String? = nil,
         maxTokens: Int? = nil,
@@ -54,7 +54,7 @@ public struct CompletionsWrapper {
     }
 
     public func createStream(
-        model: Completions.Model,
+        model: ChatCompletions.Model,
         prompt: [String],
         suffix: String? = nil,
         maxTokens: Int? = nil,
