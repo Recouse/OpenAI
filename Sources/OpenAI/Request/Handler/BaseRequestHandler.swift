@@ -11,11 +11,13 @@ import os.log
 
 public struct BaseRequestHandler: RequestHandler {
     let urlSession: URLSession
+    let eventSource: EventSource
     
     let decoder: JSONDecoder = .openAIDecoder
     
-    init(urlSession: URLSession = .shared) {
+    init(urlSession: URLSession = .shared, eventSource: EventSource = EventSource()) {
         self.urlSession = urlSession
+        self.eventSource = eventSource
     }
     
     public func perform<T>(for model: T.Type, with request: Request) async throws -> T where T: Decodable {
@@ -43,10 +45,9 @@ public struct BaseRequestHandler: RequestHandler {
         
         return AsyncThrowingStream { continuation in
             Task {
-                let eventSource = EventSource(request: urlRequest, maxRetryCount: 1)
-                eventSource.connect()
+                let dataTask = eventSource.dataTask(for: urlRequest)
                 
-                for await event in eventSource.events {
+                for await event in dataTask.events() {
                     switch event {
                     case .open:
                         continue
