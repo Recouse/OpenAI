@@ -59,7 +59,7 @@ public struct BaseRequestHandler: RequestHandler {
                             break
                         }
                         continue
-                    case .message(let message):
+                    case .event(let message):
                         guard let stringData = message.data else {
                             continue
                         }

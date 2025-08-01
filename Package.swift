@@ -1,4 +1,4 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 6.1
 
 import PackageDescription
 
@@ -8,7 +8,8 @@ let package = Package(
         .macOS("10.15"),
         .iOS("13.0"),
         .tvOS("13.0"),
-        .watchOS("6.0")
+        .watchOS("6.0"),
+        .visionOS("1.0")
     ],
     products: [
         .library(
@@ -17,7 +18,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/Recouse/EventSource.git", from: "0.0.7")
+        .package(url: "https://github.com/Recouse/EventSource.git", from: "0.1.5")
     ],
     targets: [
         .target(
