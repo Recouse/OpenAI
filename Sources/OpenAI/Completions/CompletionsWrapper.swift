@@ -8,7 +8,8 @@
 public struct CompletionsWrapper {
     let requestHandler: any RequestHandler
     let configuration: OpenAI.Configuration
-    
+
+    @available(*, deprecated, message: "The completions API endpoint received its final update in July 2023. Use the chat completions endpoint instead.")
     public func create(
         model: Model,
         prompt: [String],
@@ -53,6 +54,7 @@ public struct CompletionsWrapper {
         return try await requestHandler.perform(for: Completions.Response.self, with: request)
     }
 
+    @available(*, deprecated, message: "The completions API endpoint received its final update in July 2023. Use the chat completions endpoint instead.")
     public func createStream(
         model: Model,
         prompt: [String],
