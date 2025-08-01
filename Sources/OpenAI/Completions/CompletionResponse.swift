@@ -12,7 +12,7 @@ public extension Completions {
         public let id: String
         public let object: String
         public let created: Date
-        public let model: ChatCompletions.Model
+        public let model: Model
         public let choices: [Choice]
         public let usage: Usage?
         

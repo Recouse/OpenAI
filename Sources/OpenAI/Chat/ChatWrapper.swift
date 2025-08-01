@@ -12,7 +12,7 @@ public struct ChatWrapper {
     let configuration: OpenAI.Configuration
     
     public func completions(
-        model: ChatCompletions.Model,
+        model: Model,
         messages: [ChatCompletions.Body.Message],
         temperature: Double? = nil,
         topP: Double? = nil,
@@ -26,7 +26,7 @@ public struct ChatWrapper {
         user: String? = nil
     ) async throws -> ChatCompletions.Response {
         let body = ChatCompletions.Body(
-            model: model.rawValue,
+            model: model,
             messages: messages,
             temperature: temperature,
             topP: topP,
@@ -51,7 +51,7 @@ public struct ChatWrapper {
     }
 
     public func completionsStream(
-        model: ChatCompletions.Model,
+        model: Model,
         messages: [ChatCompletions.Body.Message],
         temperature: Double? = nil,
         topP: Double? = nil,
@@ -65,7 +65,7 @@ public struct ChatWrapper {
         user: String? = nil
     ) -> AsyncThrowingStream<ChatCompletions.Response.Chunk, Error> {
         let body = ChatCompletions.Body(
-            model: model.rawValue,
+            model: model,
             messages: messages,
             temperature: temperature,
             topP: topP,

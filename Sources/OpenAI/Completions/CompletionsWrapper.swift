@@ -10,7 +10,7 @@ public struct CompletionsWrapper {
     let configuration: OpenAI.Configuration
     
     public func create(
-        model: ChatCompletions.Model,
+        model: Model,
         prompt: [String],
         suffix: String? = nil,
         maxTokens: Int? = nil,
@@ -26,7 +26,7 @@ public struct CompletionsWrapper {
         user: String? = nil
     ) async throws -> Completions.Response {
         let body = Completions.Body(
-            model: model.rawValue,
+            model: model,
             prompt: prompt,
             suffix: suffix,
             maxTokens: maxTokens,
@@ -54,7 +54,7 @@ public struct CompletionsWrapper {
     }
 
     public func createStream(
-        model: ChatCompletions.Model,
+        model: Model,
         prompt: [String],
         suffix: String? = nil,
         maxTokens: Int? = nil,
@@ -70,7 +70,7 @@ public struct CompletionsWrapper {
         user: String? = nil
     ) -> AsyncThrowingStream<Completions.Response, Error> {
         let body = Completions.Body(
-            model: model.rawValue,
+            model: model,
             prompt: prompt,
             suffix: suffix,
             maxTokens: maxTokens,
