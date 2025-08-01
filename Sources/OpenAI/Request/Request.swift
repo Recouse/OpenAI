@@ -26,7 +26,7 @@ public extension Request {
     }
 }
 
-public struct HTTPMethod: RawRepresentable, ExpressibleByStringLiteral {
+public struct HTTPMethod: RawRepresentable, ExpressibleByStringLiteral, Sendable {
     public let rawValue: String
     
     public init(rawValue: String) {

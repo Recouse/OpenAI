@@ -9,7 +9,7 @@ import EventSource
 import Foundation
 import os.log
 
-public struct BaseRequestHandler: RequestHandler {
+public struct BaseRequestHandler: RequestHandler, Sendable {
     let urlSession: URLSession
     let eventSource: EventSource
     
@@ -44,7 +44,7 @@ public struct BaseRequestHandler: RequestHandler {
         let urlRequest = urlRequest(from: request)
         
         return AsyncThrowingStream { continuation in
-            Task {
+            Task { @Sendable in
                 let dataTask = eventSource.dataTask(for: urlRequest)
                 
                 for await event in dataTask.events() {

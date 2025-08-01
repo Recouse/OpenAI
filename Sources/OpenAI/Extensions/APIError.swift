@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct APIError: Decodable {
+public struct APIError: Decodable, Sendable {
     let message: String
     let type: APIErrorType
     let param: String?
@@ -32,7 +32,7 @@ public struct APIError: Decodable {
     }
 }
 
-public enum APIErrorType: String, Decodable {
+public enum APIErrorType: String, Decodable, Sendable {
     /// The request made is invalid, incomplete, or contains incorrect parameters.
     case invalidRequestError = "invalid_request_error"
     
