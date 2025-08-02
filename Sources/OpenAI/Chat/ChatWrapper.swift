@@ -14,6 +14,7 @@ public struct ChatWrapper {
     public func completions(
         model: Model,
         messages: [ChatCompletions.Body.Message],
+        audio: AudioRequest? = nil,
         frequencyPenalty: Double? = nil,
         logitBias: [Int: Int]? = nil,
         logprobs: Bool? = nil,
@@ -37,6 +38,7 @@ public struct ChatWrapper {
         let body = ChatCompletions.Body(
             model: model,
             messages: messages,
+            audio: audio,
             frequencyPenalty: frequencyPenalty,
             logitBias: logitBias,
             logprobs: logprobs,
@@ -71,6 +73,7 @@ public struct ChatWrapper {
     public func completionsStream(
         model: Model,
         messages: [ChatCompletions.Body.Message],
+        audio: AudioRequest? = nil,
         frequencyPenalty: Double? = nil,
         logitBias: [Int: Int]? = nil,
         logprobs: Bool? = nil,
@@ -94,6 +97,7 @@ public struct ChatWrapper {
         let body = ChatCompletions.Body(
             model: model,
             messages: messages,
+            audio: audio,
             frequencyPenalty: frequencyPenalty,
             logitBias: logitBias,
             logprobs: logprobs,

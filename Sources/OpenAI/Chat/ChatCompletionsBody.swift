@@ -40,6 +40,10 @@ public extension ChatCompletions {
         public var model: String
         /// The messages to generate chat completions for, in the chat format.
         public var messages: [Message]
+        /// Parameters for audio output.
+        ///
+        /// Required when audio output is requested with modalities: `["audio"]`.
+        public var audio: AudioRequest?
         /// Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
         public var frequencyPenalty: Double?
         /// Modify the likelihood of specified tokens appearing in the completion.
