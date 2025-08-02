@@ -7,29 +7,6 @@
 
 import JSONSchema
 
-let a: ResponseFormat = .jsonSchema(
-    name: "test",
-    strict: false,
-    schema: .object(
-        properties: [
-            "location": .string(
-                description: "The city and state/country, e.g. 'San Francisco, CA'",
-                examples: ["London, UK", "Tokyo, Japan"]
-            ),
-            "unit": .string(
-                description: "The temperature unit to use",
-                default: "celsius",
-                enum: ["celsius", "fahrenheit"]
-            ),
-            "include_forecast": .boolean(
-                description: "Whether to include the weather forecast",
-                default: false
-            )
-        ],
-        required: ["location"]
-    )
-)
-
 public enum ResponseFormat: Encodable, Sendable {
     case jsonObject
     case jsonSchema(name: String, strict: Bool, schema: JSONSchema)
