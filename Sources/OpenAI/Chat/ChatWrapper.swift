@@ -25,11 +25,14 @@ public struct ChatWrapper {
         presencePenalty: Double? = nil,
         promptCacheKey: String? = nil,
         reasoningEffort: Effort? = nil,
-        safetyIdentifier: String? = nil,
-        stop: [String]? = nil,
-        temperature: Double? = nil,
-        topP: Double? = nil,
         responseFormat: ResponseFormat? = nil,
+        safetyIdentifier: String? = nil,
+        serviceTier: ServiceTier? = nil,
+        stop: [String]? = nil,
+        store: Bool? = nil,
+        temperature: Double? = nil,
+        topLogprobs: Int?,
+        topP: Double?
     ) async throws -> ChatCompletions.Response {
         let body = ChatCompletions.Body(
             model: model,
@@ -47,8 +50,13 @@ public struct ChatWrapper {
             reasoningEffort: reasoningEffort,
             responseFormat: responseFormat,
             safetyIdentifier: safetyIdentifier,
+            serviceTier: serviceTier,
             stop: stop,
-            stream: false
+            store: store,
+            stream: false,
+            temperature: temperature,
+            topLogprobs: topLogprobs,
+            topP: topP
         )
         
         let request = ChatCompletionsRequest(
@@ -74,11 +82,14 @@ public struct ChatWrapper {
         presencePenalty: Double? = nil,
         promptCacheKey: String? = nil,
         reasoningEffort: Effort? = nil,
-        safetyIdentifier: String? = nil,
-        stop: [String]? = nil,
-        temperature: Double? = nil,
-        topP: Double? = nil,
         responseFormat: ResponseFormat? = nil,
+        safetyIdentifier: String? = nil,
+        serviceTier: ServiceTier? = nil,
+        stop: [String]? = nil,
+        store: Bool? = nil,
+        temperature: Double? = nil,
+        topLogprobs: Int?,
+        topP: Double?
     ) -> AsyncThrowingStream<ChatCompletions.Response.Chunk, Error> {
         let body = ChatCompletions.Body(
             model: model,
@@ -96,8 +107,13 @@ public struct ChatWrapper {
             reasoningEffort: reasoningEffort,
             responseFormat: responseFormat,
             safetyIdentifier: safetyIdentifier,
+            serviceTier: serviceTier,
             stop: stop,
-            stream: true
+            store: store,
+            stream: true,
+            temperature: temperature,
+            topLogprobs: topLogprobs,
+            topP: topP
         )
         
         let request = ChatCompletionsRequest(

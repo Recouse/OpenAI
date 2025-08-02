@@ -83,14 +83,36 @@ public extension ChatCompletions {
         ///
         /// The IDs should be a string that uniquely identifies each user. We recommend hashing their username or email address, in order to avoid sending us any identifying information.
         public var safetyIdentifier: String?
+        /// Specifies the processing type used for serving the request.
+        ///
+        /// * If set to `auto`, then the request will be processed with the service tier configured in the Project settings. Unless otherwise configured, the Project will use `default`.
+        /// * If set to `default`, then the request will be processed with the standard pricing and performance for the selected model.
+        /// * If set to `flex` or `priority`, then the request will be processed with the corresponding service tier.
+        /// Contact sales to learn more about Priority processing.
+        /// * When not set, the default behavior is `auto`.
+        ///
+        /// When the service_tier parameter is set, the response body will include the service_tier value
+        /// based on the processing mode actually used to serve the request. This response value may be different from the value set in the parameter.
+        public var serviceTier: ServiceTier?
         /// Up to 4 sequences where the API will stop generating further tokens.
+        ///
+        /// Not supported with latest reasoning models `o3` and `o4-mini`.
         public var stop: [String]?
+        /// Whether or not to store the output of this chat completion request for use in our model distillation or evals products.
+        ///
+        /// Supports text and image inputs.
+        /// - Note: image inputs over 10MB will be dropped.
+        public var store: Bool?
         /// If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message.
         public var stream: Bool
         /// What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
         ///
         /// We generally recommend altering this or `top_p` but not both.
         public var temperature: Double?
+        /// An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability.
+        ///
+        /// `logprobs` must be set to `true` if this parameter is used.
+        public var topLogprobs: Int?
         /// An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
         ///
         /// We generally recommend altering this or `temperature` but not both.

@@ -5,8 +5,8 @@ completions and chat streaming.
 
 ## What's Implemented:
 - [x] [Models](https://platform.openai.com/docs/api-reference/models)
-- [x] [Completions](https://platform.openai.com/docs/api-reference/completions)
-- [x] [Chat](https://platform.openai.com/docs/api-reference/chat)
+- [x] [Completions (Deprecated)](https://platform.openai.com/docs/api-reference/completions)
+- [x] [Chat Completions](https://platform.openai.com/docs/api-reference/chat)
 - [x] [Edits](https://platform.openai.com/docs/api-reference/edits)
 - [ ] [Images](https://platform.openai.com/docs/api-reference/images)
 - [ ] [Embeddings](https://platform.openai.com/docs/api-reference/embeddings)
