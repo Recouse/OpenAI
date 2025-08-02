@@ -18,13 +18,15 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/Recouse/EventSource.git", from: "0.1.5")
+        .package(url: "https://github.com/Recouse/EventSource.git", from: "0.1.5"),
+        .package(url: "https://github.com/mattt/JSONSchema.git", from: "1.3.0"),
     ],
     targets: [
         .target(
             name: "OpenAI",
             dependencies: [
-                .product(name: "EventSource", package: "EventSource")
+                .product(name: "EventSource", package: "EventSource"),
+                .product(name: "JSONSchema", package: "JSONSchema"),
             ]
         ),
         .testTarget(
