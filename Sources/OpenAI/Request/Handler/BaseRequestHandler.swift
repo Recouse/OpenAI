@@ -7,14 +7,16 @@
 
 import EventSource
 import Foundation
-import os.log
+import Logging
 
 public struct BaseRequestHandler: RequestHandler, Sendable {
     let urlSession: URLSession
     let eventSource: EventSource
     
-    let decoder: JSONDecoder = .openAIDecoder
-    
+    private let decoder: JSONDecoder = .openAIDecoder
+
+    private let logger = Logger(label: "me.recouse.OpenAI")
+
     init(urlSession: URLSession = .shared, eventSource: EventSource = EventSource()) {
         self.urlSession = urlSession
         self.eventSource = eventSource
@@ -52,7 +54,7 @@ public struct BaseRequestHandler: RequestHandler, Sendable {
                     case .open:
                         continue
                     case .error(let error):
-                        os_log(.debug, "Received an error: %@", error.localizedDescription)
+                        logger.debug("Received an error: \(error.localizedDescription)")
                         if case let EventSourceError.connectionError(httpStatusCode, response) = error {
                             let openAIError = parseError(from: response, with: httpStatusCode)
                             continuation.finish(throwing: openAIError)

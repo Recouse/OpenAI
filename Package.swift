@@ -5,11 +5,11 @@ import PackageDescription
 let package = Package(
     name: "OpenAI",
     platforms: [
-        .macOS("10.15"),
-        .iOS("13.0"),
-        .tvOS("13.0"),
-        .watchOS("6.0"),
-        .visionOS("1.0")
+        .macOS(.v10_15),
+        .iOS(.v13),
+        .tvOS(.v13),
+        .watchOS(.v6),
+        .visionOS(.v1)
     ],
     products: [
         .library(
@@ -20,6 +20,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/Recouse/EventSource.git", from: "0.1.5"),
         .package(url: "https://github.com/mattt/JSONSchema.git", from: "1.3.0"),
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.6.4")
     ],
     targets: [
         .target(
@@ -27,6 +28,7 @@ let package = Package(
             dependencies: [
                 .product(name: "EventSource", package: "EventSource"),
                 .product(name: "JSONSchema", package: "JSONSchema"),
+                .product(name: "Logging", package: "swift-log")
             ]
         ),
         .testTarget(
