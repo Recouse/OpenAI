@@ -1,13 +1,13 @@
 # OpenAI
 
-This package lets you quickly and easily access a variety of OpenAI API endpoints. It supports 
-completions and chat streaming.
+This package lets you quickly and easily access a variety of OpenAI API endpoints. It supports completions and chat streaming.
 
 ## What's Implemented:
 - [x] [Models](https://platform.openai.com/docs/api-reference/models)
 - [x] [Completions (Deprecated)](https://platform.openai.com/docs/api-reference/completions)
 - [x] [Chat Completions](https://platform.openai.com/docs/api-reference/chat)
 - [x] [Edits](https://platform.openai.com/docs/api-reference/edits)
+- [ ] [Responses](https://platform.openai.com/docs/api-reference/responses)
 - [ ] [Images](https://platform.openai.com/docs/api-reference/images)
 - [ ] [Embeddings](https://platform.openai.com/docs/api-reference/embeddings)
 - [ ] [Audio](https://platform.openai.com/docs/api-reference/audio)
@@ -17,14 +17,13 @@ completions and chat streaming.
 
 ## Installation
 
-The module name of the package is `OpenAI`. Choose one of the instructions below to install and add 
-the following import statement to your source code.
+The module name of the package is `OpenAI`. Choose one of the instructions below to install and add the following import statement to your source code.
 
 ```swift
 import OpenAI
 ```
 
-#### [Xcode Package Dependency](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
+#### [Xcode Package Dependency](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app)
 
 From Xcode menu: `File` > `Swift Packages` > `Add Package Dependency`
 
@@ -37,15 +36,18 @@ https://github.com/Recouse/OpenAI
 In your `Package.swift` file, first add the following to the package `dependencies`:
 
 ```swift
-.package(url: "https://github.com/Recouse/OpenAI.git"),
+.package(url: "https://github.com/Recouse/OpenAI.git", from: "0.1.0"),
 ```
 
 And then, include "OpenAI" as a dependency for your target:
 
 ```swift
-.target(name: "<target>", dependencies: [
-    .product(name: "OpenAI", package: "OpenAI"),
-]),
+.target(
+    name: "<target>",
+    dependencies: [
+        .product(name: "OpenAI", package: "OpenAI"),
+    ]
+),
 ```
 
 ## Usage
@@ -57,17 +59,17 @@ import OpenAI
 
 let client = OpenAI(apiKey: "*YOUR API KEY*")
 
-let chat = try await client.chat.completions(model: .gpt3_5_turbo, messages: [
+let chat = try await client.chat.completions(model: .gpt4_1_nano, messages: [
     .user("Say This is a test.")
 ])
 
 // Using streaming
 
-let chat = client.chat.completionsStream(model: .gpt3_5_turbo, messages: [
+let completions = client.chat.completionsStream(model: .gpt4_1_nano, messages: [
     .user("Say This is a test in 5 different styles.")
 ])
 
-for try await chunk in chat {
+for try await chunk in completions {
     print(chunk.choices.first?.delta.content)
 }
 ```
@@ -83,6 +85,8 @@ for try await chunk in chat {
 ## Dependencies
 
 * EventSource https://github.com/Recouse/EventSource
+* JSONSchema https://github.com/mattt/JSONSchema
+* swift-log https://github.com/apple/swift-log
 
 ## Contributing
 
