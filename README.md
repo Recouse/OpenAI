@@ -1,19 +1,22 @@
 # OpenAI
 
-This package lets you quickly and easily access a variety of OpenAI API endpoints. It supports completions and chat streaming.
+A modern, type-safe Swift package for seamless integration with OpenAI's API across all Apple platforms. Built with async/await support and streaming capabilities.
 
-## What's Implemented:
-- [x] [Models](https://platform.openai.com/docs/api-reference/models)
-- [x] [Completions (Deprecated)](https://platform.openai.com/docs/api-reference/completions)
-- [x] [Chat Completions](https://platform.openai.com/docs/api-reference/chat)
-- [x] [Edits](https://platform.openai.com/docs/api-reference/edits)
-- [ ] [Responses](https://platform.openai.com/docs/api-reference/responses)
-- [ ] [Images](https://platform.openai.com/docs/api-reference/images)
-- [ ] [Embeddings](https://platform.openai.com/docs/api-reference/embeddings)
-- [ ] [Audio](https://platform.openai.com/docs/api-reference/audio)
-- [ ] [Files](https://platform.openai.com/docs/api-reference/files)
-- [ ] [Fine-tunes](https://platform.openai.com/docs/api-reference/fine-tunes)
-- [ ] [Moderations](https://platform.openai.com/docs/api-reference/moderations)
+## Features
+
+- **🛡️ Type Safety**: Comprehensive Swift types for all API endpoints
+- **⚡ Modern Swift**: Built with async/await, Codable, and Swift concurrency
+- **🔄 Streaming Support**: Chat completions with async sequences
+- **🌐 Cross-Platform**: Works on Apple platforms (iOS, macOS, tvOS, watchOS, visionOS), Linux and Android
+- **🎯 Comprehensive API Coverage**: Support for all major OpenAI endpoints
+
+## Compatibility
+
+* macOS 10.15+
+* iOS 13.0+
+* tvOS 13.0+
+* watchOS 6.0+
+* visionOS 1.0+
 
 ## Installation
 
@@ -50,37 +53,50 @@ And then, include "OpenAI" as a dependency for your target:
 ),
 ```
 
-## Usage
+## Basic Usage
 
 ```swift
 import OpenAI
 
-...
+// Initialize client
+let client = OpenAI(apiKey: "your-api-key-here")
 
-let client = OpenAI(apiKey: "*YOUR API KEY*")
+// Simple chat completion
+let response = try await client.chat.completions(
+    model: .gpt4_1_mini,
+    messages: [.user("Explain quantum computing in simple terms")]
+)
 
-let chat = try await client.chat.completions(model: .gpt4_1_nano, messages: [
-    .user("Say This is a test.")
-])
+print(response.choices.first?.message.content ?? "No response")
+```
 
-// Using streaming
+### Streaming Responses
 
-let completions = client.chat.completionsStream(model: .gpt4_1_nano, messages: [
-    .user("Say This is a test in 5 different styles.")
-])
+```swift
+// Stream chat completions
+let stream = client.chat.completionsStream(
+    model: .gpt4_1_nano,
+    messages: [.user("Write a short story about space exploration")]
+)
 
-for try await chunk in completions {
-    print(chunk.choices.first?.delta.content)
+for try await chunk in stream {
+    print(chunk.choices.first?.delta.content ?? "")
 }
 ```
 
-## Compatibility
+## What's Implemented:
 
-* macOS 10.15+
-* iOS 13.0+
-* tvOS 13.0+
-* watchOS 6.0+
-* visionOS 1.0+
+- [x] [Models](https://platform.openai.com/docs/api-reference/models)
+- [x] [Completions (Deprecated)](https://platform.openai.com/docs/api-reference/completions)
+- [x] [Chat Completions](https://platform.openai.com/docs/api-reference/chat)
+- [x] [Edits](https://platform.openai.com/docs/api-reference/edits)
+- [ ] [Responses](https://platform.openai.com/docs/api-reference/responses)
+- [ ] [Images](https://platform.openai.com/docs/api-reference/images)
+- [ ] [Embeddings](https://platform.openai.com/docs/api-reference/embeddings)
+- [ ] [Audio](https://platform.openai.com/docs/api-reference/audio)
+- [ ] [Files](https://platform.openai.com/docs/api-reference/files)
+- [ ] [Fine-tunes](https://platform.openai.com/docs/api-reference/fine-tunes)
+- [ ] [Moderations](https://platform.openai.com/docs/api-reference/moderations)
 
 ## Dependencies
 
