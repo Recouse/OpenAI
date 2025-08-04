@@ -1,5 +1,7 @@
 # OpenAI
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FRecouse%2FOpenAI%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/Recouse/OpenAI) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FRecouse%2FOpenAI%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/Recouse/OpenAI)
+
 A modern, type-safe Swift package for seamless integration with OpenAI's API across all Apple platforms. Built with async/await support and streaming capabilities.
 
 ## Features
