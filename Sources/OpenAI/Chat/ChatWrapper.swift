@@ -32,8 +32,8 @@ public struct ChatWrapper {
         stop: [String]? = nil,
         store: Bool? = nil,
         temperature: Double? = nil,
-        topLogprobs: Int?,
-        topP: Double?
+        topLogprobs: Int? = nil,
+        topP: Double? = nil
     ) async throws -> ChatCompletions.Response {
         let body = ChatCompletions.Body(
             model: model,
@@ -91,8 +91,8 @@ public struct ChatWrapper {
         stop: [String]? = nil,
         store: Bool? = nil,
         temperature: Double? = nil,
-        topLogprobs: Int?,
-        topP: Double?
+        topLogprobs: Int? = nil,
+        topP: Double? = nil
     ) -> AsyncThrowingStream<ChatCompletions.Response.Chunk, Error> {
         let body = ChatCompletions.Body(
             model: model,
