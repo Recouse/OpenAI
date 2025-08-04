@@ -7,31 +7,94 @@
 
 public typealias Model = String
 
+// MARK: - GPT-4.1
+
+extension Model {
+    /// GPT-4.1 is a flagship model for complex tasks.
+    ///
+    /// It is well suited for problem solving across domains.
+    /// * Context window: 1,047,576
+    /// * Max output tokens: 32,768
+    public static let gpt4_1: Model = "gpt-4.1"
+
+    /// GPT-4.1 mini provides a balance between intelligence, speed, and cost that makes it an attractive model for many use cases.
+    ///
+    /// * Context window: 1,047,576
+    /// * Max output tokens: 32,768
+    public static let gpt4_1_mini: Model = "gpt-4.1-mini"
+
+    /// GPT-4.1 nano is the fastest, most cost-effective GPT-4.1 model.
+    ///
+    /// * Context window: 1,047,576
+    /// * Max output tokens: 32,768
+    public static let gpt4_1_nano: Model = "gpt-4.1-nano"
+}
+
+// MARK: - GPT-4o
+
+extension Model {
+    /// GPT-4o is a versatile, high-intelligence flagship model.
+    ///
+    /// It accepts both text and image inputs, and produces text outputs (including Structured Outputs).
+    /// It is the best model for most tasks, and is our most capable model outside of our o-series models.
+    public static let gpt4o: Model = "gpt-4o"
+
+    public static let gpt4o_2024_11_20: Model = "gpt-4o-2024-11-20"
+
+    public static let gpt4o_2024_05_13: Model = "gpt-4o-2024-05-13"
+
+    /// ChatGPT-4o points to the GPT-4o snapshot currently used in ChatGPT.
+    public static let chatgpt4o: Model = "chatgpt-4o-latest"
+
+    /// This is a preview release of the GPT-4o Audio models.
+    ///
+    /// These models accept audio inputs and outputs, and can be used in the Chat Completions REST API.
+    public static let gpt40_audio_preview: Model = "gpt-4o-audio-preview"
+
+    public static let gpt40_audio_preview_2024_12_17: Model = "gpt-4o-audio-preview-2024-12-17"
+
+    public static let gpt40_audio_preview_2024_10_01: Model = "gpt-4o-audio-preview-2024-10-01"
+
+    /// GPT-4o mini (“o” for “omni”) is a fast, affordable small model for focused tasks.
+    ///
+    /// It accepts both text and image inputs, and produces text outputs (including Structured Outputs).
+    /// It is ideal for fine-tuning, and model outputs from a larger model like GPT-4o can be distilled
+    /// to GPT-4o-mini to produce similar results at lower cost and latency.
+    public static let gpt4o_mini: Model = "gpt-4o-mini"
+
+    /// This is a preview release of the smaller GPT-4o Audio mini model.
+    ///
+    /// It's designed to input audio or create audio outputs via the REST API.
+    public static let gpt4o_mini_audio_preview: Model = "gpt-4o-mini-audio-preview"
+}
+
 // MARK: - GTP-4
 
 extension Model {
+    /// GPT-4 Turbo is the next generation of GPT-4, an older high-intelligence GPT model.
+    ///
+    /// It was designed to be a cheaper, better version of GPT-4. Today, we recommend using a newer model like GPT-4o.
+    /// * Context window: 128,000
+    /// * Training data: Up to Dec 2023
+    public static let gpt4_turbo: Model = "gpt-4-turbo"
+
     /// The latest GPT-4 model intended to reduce cases of "laziness" where the model doesn't complete a task.
     /// * Context window: 128,000
-    /// * Training data: Up to Apr 2023
+    /// * Training data: Up to Dec 2023
     public static let gpt4_0125_preview: Model = "gpt-4-0125-preview"
 
     /// Currently points to gpt-4-0125-preview.
     /// * Context window: 128,000
     /// * Training data: Up to Apr 2023
+    @available(*, deprecated, renamed: "gpt4_turbo")
     public static let gpt4_turbo_preview: Model = "gpt-4-turbo-preview"
-
-    /// GPT-4 Turbo model featuring improved instruction following, JSON mode, reproducible outputs,
-    /// parallel function calling, and more. Returns a maximum of 4,096 output tokens.
-    /// This preview model is not yet suited for production traffic.
-    /// * Context window: 128,000
-    /// * Training data: Up to Apr 2023
-    public static let gpt4_1106_preview: Model = "gpt-4-1106-preview"
 
     /// GPT-4 with the ability to understand images, in addition to all other GPT-4 Turbo
     /// capabilities. Returns a maximum of 4,096 output tokens. This is a preview model version
     /// and not suited yet for production traffic.
     /// * Context window: 128,000
     /// * Training data: Up to Apr 2023
+    @available(*, deprecated, renamed: "gpt4o", message: "As of June 17, 2024, only existing users of these models will be able to continue using them.")
     public static let gpt4_vision_preview: Model = "gpt-4-vision-preview"
 
     /// More capable than any GPT-3.5 model, able to do more complex tasks, and optimized for chat.
@@ -43,19 +106,21 @@ extension Model {
     /// Snapshot of gpt-4 from June 13th 2023 with function calling data. Unlike gpt-4,
     /// this model will not receive updates, and will be deprecated 3 months after a new version is released.
     /// * Context window: 8,192
-    /// * Training data: Up to Sep 2021
-    public static let gpt4_0613: Model = "gpt-4-0613"
+    /// * Training data: Up to Dec 2023
+    public static let gpt4_0314: Model = "gpt-4-0314"
 
     /// Same capabilities as the base gpt-4 mode but with 4x the context length.
     /// Will be updated with our latest model iteration.
     /// * Context window: 32,768
     /// * Training data: Up to Sep 2021
+    @available(*, deprecated, renamed: "gpt4o", message: "As of June 17, 2024, only existing users of these models will be able to continue using them.")
     public static let gpt4_32k: Model = "gpt-4-32k"
 
     /// Snapshot of gpt-4-32 from June 13th 2023. Unlike gpt-4-32k, this model will not receive updates,
     /// and will be deprecated 3 months after a new version is released.
     /// * Context window: 32,768
     /// * Training data: Up to Sep 2021
+    @available(*, deprecated, renamed: "gpt4o", message: "As of June 17, 2024, only existing users of these models will be able to continue using them.")
     public static let gpt4_32k_0613: Model = "gpt-4-32k-0613"
 }
 
@@ -71,13 +136,14 @@ extension Model {
 
     /// Most capable GPT-3.5 model and optimized for chat at 1/10th the cost of text-davinci-003.
     /// Will be updated with our latest model iteration.
-    /// * Context window: 4,096
+    /// * Context window: 16,384
     /// * Training data: Up to Sep 2021
     public static let gpt3_5_turbo: Model = "gpt-3.5-turbo"
 
     /// Same capabilities as the standard `gpt-3.5-turbo` model but with 4 times the context.
     /// * Context window: 16,384
     /// * Training data: Up to Sep 2021
+    @available(*, deprecated, renamed: "gpt3_5_turbo")
     public static let gpt3_5_turbo_16k: Model = "gpt-3.5-turbo-16k"
 
     /// Similar capabilities as GPT-3 era models. Compatible with legacy Completions endpoint and not Chat Completions.
@@ -89,21 +155,21 @@ extension Model {
     /// this model will not receive updates, and will be deprecated 3 months after a new version is released.
     /// * Context window: 4,096
     /// * Training data: Up to Sep 2021
-    @available(*, deprecated, renamed: "gpt3_5_turbo_1106", message: "Will be deprecated by OpenAI.")
+    @available(*, deprecated, renamed: "gpt3_5_turbo", message: "As of June 17, 2024, only existing users of these models will be able to continue using them.")
     public static let gpt3_5_turbo_0613: Model = "gpt-3.5-turbo-0613"
 
     /// Snapshot of gpt-3.5-turbo-16k from June 13th 2023. Unlike gpt-3.5-turbo-16k,
     /// this model will not receive updates, and will be deprecated 3 months after a new version is released.
     /// * Context window: 16,384
     /// * Training data: Up to Sep 2021
-    @available(*, deprecated, renamed: "gpt3_5_turbo_1106", message: "Will be deprecated by OpenAI.")
+    @available(*, deprecated, renamed: "gpt3_5_turbo", message: "As of June 17, 2024, only existing users of these models will be able to continue using them.")
     public static let gpt3_5_turbo_16k_0613: Model = "gpt-3.5-turbo-16k-0613"
 
     /// Snapshot of gpt-3.5-turbo from March 1st 2023. Unlike gpt-3.5-turbo, this model will not receive updates,
     /// and will only be supported for a three month period ending on June 1st 2023.
     /// * Context window: 4,096
     /// * Training data: Up to Sep 2021
-    @available(*, deprecated, renamed: "gpt3_5_turbo_1106", message: "Will be deprecated by OpenAI.")
+    @available(*, deprecated, renamed: "gpt3_5_turbo", message: "Will be deprecated by OpenAI.")
     public static let gpt3_5_turbo_0301: Model = "gpt-3.5-turbo-0301"
 }
 
@@ -134,16 +200,24 @@ extension Model {
 // MARK: - Moderation
 
 extension Model {
+    /// Moderation models are free models designed to detect harmful content.
+    ///
+    /// This model is the most capable moderation model, accepting images as input as well.
+    public static let omni_moderation: Model = "omni-moderation"
+
     /// Currently points to text-moderation-007.
     /// * Max tokens: 32,768
+    @available(*, deprecated, renamed: "omni_moderation", message: "On April 28th, 2025, OpenAI notified developers using text-moderation of its deprecation and removal from the API in six months.")
     public static let text_moderation_latest: Model = "text-moderation-latest"
 
     /// Currently points to text-moderation-007.
     /// * Max tokens: 32,768
+    @available(*, deprecated, renamed: "omni_moderation", message: "On April 28th, 2025, OpenAI notified developers using text-moderation of its deprecation and removal from the API in six months.")
     public static let text_moderation_stable: Model = "text-moderation-stable"
 
     /// Most capable moderation model across all categories.
     /// * Max tokens: 32,768
+    @available(*, deprecated, renamed: "omni_moderation", message: "On April 28th, 2025, OpenAI notified developers using text-moderation of its deprecation and removal from the API in six months.")
     public static let text_moderation_007: Model = "text-moderation-007"
 }
 
