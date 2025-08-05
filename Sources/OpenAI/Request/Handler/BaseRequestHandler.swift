@@ -7,6 +7,9 @@
 
 import EventSource
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public struct BaseRequestHandler: RequestHandler, Sendable {
     let urlSession: URLSession
