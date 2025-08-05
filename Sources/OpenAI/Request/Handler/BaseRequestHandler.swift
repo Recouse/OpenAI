@@ -7,7 +7,6 @@
 
 import EventSource
 import Foundation
-import Logging
 
 public struct BaseRequestHandler: RequestHandler, Sendable {
     let urlSession: URLSession
@@ -15,7 +14,7 @@ public struct BaseRequestHandler: RequestHandler, Sendable {
     
     private let decoder: JSONDecoder = .openAIDecoder
 
-    private let logger = Logger(label: "me.recouse.OpenAI")
+    private let logger = PlatformLogger(subsystem: "me.recouse.OpenAI", category: "BaseRequestHandler")
 
     init(urlSession: URLSession = .shared, eventSource: EventSource = EventSource()) {
         self.urlSession = urlSession
