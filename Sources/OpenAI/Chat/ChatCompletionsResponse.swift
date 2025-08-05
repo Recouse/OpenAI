@@ -50,5 +50,19 @@ public extension ChatCompletions {
                 public let finishReason: FinishReason?
             }
         }
+
+        public struct Usage: Decodable, Sendable {
+            public let completionTokens: Int
+            public let promptTokens: Int
+            public let totalTokens: Int
+            public let completionTokensDetails: CompletionTokensDetails
+
+            public struct CompletionTokensDetails: Decodable, Sendable {
+                public let acceptedPredictionTokens: Int
+                public let audioTokens: Int
+                public let reasoningTokens: Int
+                public let rejectedPredictionTokens: Int
+            }
+        }
     }
 }

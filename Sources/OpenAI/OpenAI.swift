@@ -16,6 +16,8 @@ public struct OpenAI {
     public let models: ModelsWrapper
     public let completions: CompletionsWrapper
     public let chat: ChatWrapper
+    public let responses: ResponsesWrapper
+
     public init(
         apiKey: String? = nil,
         organization: String? = nil,
@@ -38,6 +40,10 @@ public struct OpenAI {
             configuration: self.configuration
         )
         self.chat = ChatWrapper(
+            requestHandler: self.requestHandler,
+            configuration: self.configuration
+        )
+        self.responses = ResponsesWrapper(
             requestHandler: self.requestHandler,
             configuration: self.configuration
         )

@@ -34,6 +34,10 @@ public extension ChatCompletions {
             public static func user(_ content: String) -> Self {
                 Self(role: .user, content: content)
             }
+            
+            public static func developer(_ content: String) -> Self {
+                Self(role: .developer, content: content)
+            }
         }
         
         /// Model ID used to generate the response, like gpt-4o or o3. OpenAI offers a wide range of models with different capabilities, performance characteristics, and price points.

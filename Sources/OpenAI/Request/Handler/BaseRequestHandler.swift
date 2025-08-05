@@ -52,6 +52,7 @@ public struct BaseRequestHandler: RequestHandler, Sendable {
                 for await event in dataTask.events() {
                     switch event {
                     case .open:
+                        logger.debug("Connection opened for \(urlRequest.url?.absoluteString ?? "(unknown)")")
                         continue
                     case .error(let error):
                         logger.debug("Received an error: \(error.localizedDescription)")
@@ -61,11 +62,13 @@ public struct BaseRequestHandler: RequestHandler, Sendable {
                             break
                         }
                         continue
-                    case .event(let message):
-                        guard let stringData = message.data else {
+                    case .event(let event):
+                        guard let stringData = event.data else {
                             continue
                         }
-                        
+
+                        logger.debug("Received an event for \(urlRequest.url?.absoluteString ?? "(unknown)")")
+
                         if stringData == "[DONE]" {
                             continuation.finish()
                             break
@@ -79,6 +82,7 @@ public struct BaseRequestHandler: RequestHandler, Sendable {
                             continuation.finish(throwing: error)
                         }
                     case .closed:
+                        logger.debug("Connection closed for \(urlRequest.url?.absoluteString ?? "(unknown)")")
                         continuation.finish()
                     }
                 }

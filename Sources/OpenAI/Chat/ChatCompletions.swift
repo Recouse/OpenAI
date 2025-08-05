@@ -6,10 +6,5 @@
 //
 
 public struct ChatCompletions {
-    /// The role of the author of this message.
-    public enum Role: String, Codable, CaseIterable {
-        case system
-        case user
-        case assistant
-    }
+
 }
