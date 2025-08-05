@@ -74,6 +74,8 @@ print(response.choices.first?.message.content ?? "No response")
 
 ### Streaming Responses
 
+#### Chat Completions
+
 ```swift
 // Stream chat completions
 let stream = client.chat.completionsStream(
@@ -83,6 +85,22 @@ let stream = client.chat.completionsStream(
 
 for try await chunk in stream {
     print(chunk.choices.first?.delta.content ?? "")
+}
+```
+
+#### Responses
+
+```swift
+// Stream responses
+let responses = openAI.responses.createStream(
+    input: "Explain teleportation in simple terms",
+    model: .gpt4_1_nano
+)
+
+for try await response in responses {
+    // Filter text deltas
+    guard response.type == .outputTextDelta else { continue }
+    print(response.delta ?? "")
 }
 ```
 
