@@ -91,7 +91,7 @@ for try await chunk in stream {
 - [x] [Models](https://platform.openai.com/docs/api-reference/models)
 - [x] [Completions (Deprecated)](https://platform.openai.com/docs/api-reference/completions)
 - [x] [Chat Completions](https://platform.openai.com/docs/api-reference/chat)
-- [ ] [Responses](https://platform.openai.com/docs/api-reference/responses)
+- [x] [Responses](https://platform.openai.com/docs/api-reference/responses)
 - [ ] [Images](https://platform.openai.com/docs/api-reference/images)
 - [ ] [Embeddings](https://platform.openai.com/docs/api-reference/embeddings)
 - [ ] [Audio](https://platform.openai.com/docs/api-reference/audio)
