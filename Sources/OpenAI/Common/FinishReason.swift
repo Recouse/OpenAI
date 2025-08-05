@@ -5,7 +5,7 @@
 //  Created by Firdavs Khaydarov on 14/04/2023.
 //
 
-public enum FinishReason: String, Decodable {
+public enum FinishReason: String, Decodable, Sendable {
     case stop
     case length
 }

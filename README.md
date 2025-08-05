@@ -1,30 +1,34 @@
 # OpenAI
 
-This package lets you quickly and easily access a variety of OpenAI API endpoints. It supports 
-completions and chat streaming.
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FRecouse%2FOpenAI%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/Recouse/OpenAI) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FRecouse%2FOpenAI%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/Recouse/OpenAI)
 
-## What's Implemented:
-- [x] [Models](https://platform.openai.com/docs/api-reference/models)
-- [x] [Completions](https://platform.openai.com/docs/api-reference/completions)
-- [x] [Chat](https://platform.openai.com/docs/api-reference/chat)
-- [x] [Edits](https://platform.openai.com/docs/api-reference/edits)
-- [ ] [Images](https://platform.openai.com/docs/api-reference/images)
-- [ ] [Embeddings](https://platform.openai.com/docs/api-reference/embeddings)
-- [ ] [Audio](https://platform.openai.com/docs/api-reference/audio)
-- [ ] [Files](https://platform.openai.com/docs/api-reference/files)
-- [ ] [Fine-tunes](https://platform.openai.com/docs/api-reference/fine-tunes)
-- [ ] [Moderations](https://platform.openai.com/docs/api-reference/moderations)
+A modern, type-safe Swift package for seamless integration with OpenAI's API across all Apple platforms. Built with async/await support and streaming capabilities.
+
+## Features
+
+- **🛡️ Type Safety**: Comprehensive Swift types for all API endpoints
+- **⚡ Modern Swift**: Built with async/await, Codable, and Swift concurrency
+- **🔄 Streaming Support**: Chat completions with async sequences
+- **🌐 Cross-Platform**: Works on Apple platforms (iOS, macOS, tvOS, watchOS, visionOS), Linux and Android
+- **🎯 Comprehensive API Coverage**: Support for all major OpenAI endpoints
+
+## Compatibility
+
+* macOS 10.15+
+* iOS 13.0+
+* tvOS 13.0+
+* watchOS 6.0+
+* visionOS 1.0+
 
 ## Installation
 
-The module name of the package is `OpenAI`. Choose one of the instructions below to install and add 
-the following import statement to your source code.
+The module name of the package is `OpenAI`. Choose one of the instructions below to install and add the following import statement to your source code.
 
 ```swift
 import OpenAI
 ```
 
-#### [Xcode Package Dependency](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
+#### [Xcode Package Dependency](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app)
 
 From Xcode menu: `File` > `Swift Packages` > `Add Package Dependency`
 
@@ -37,52 +41,87 @@ https://github.com/Recouse/OpenAI
 In your `Package.swift` file, first add the following to the package `dependencies`:
 
 ```swift
-.package(url: "https://github.com/Recouse/OpenAI.git"),
+.package(url: "https://github.com/Recouse/OpenAI.git", from: "0.1.0"),
 ```
 
 And then, include "OpenAI" as a dependency for your target:
 
 ```swift
-.target(name: "<target>", dependencies: [
-    .product(name: "OpenAI", package: "OpenAI"),
-]),
+.target(
+    name: "<target>",
+    dependencies: [
+        .product(name: "OpenAI", package: "OpenAI"),
+    ]
+),
 ```
 
-## Usage
+## Basic Usage
 
 ```swift
 import OpenAI
 
-...
+// Initialize client
+let client = OpenAI(apiKey: "your-api-key-here")
 
-let client = OpenAI(apiKey: "*YOUR API KEY*")
+// Simple chat completion
+let response = try await client.chat.completions(
+    model: .gpt4_1_mini,
+    messages: [.user("Explain quantum computing in simple terms")]
+)
 
-let chat = try await client.chat.completions(model: .gpt3_5_turbo, messages: [
-    .user("Say This is a test.")
-])
+print(response.choices.first?.message.content ?? "No response")
+```
 
-// Using streaming
+### Streaming Responses
 
-let chat = client.chat.completionsStream(model: .gpt3_5_turbo, messages: [
-    .user("Say This is a test in 5 different styles.")
-])
+#### Chat Completions
 
-for try await chunk in chat {
-    print(chunk.choices.first?.delta.content)
+```swift
+// Stream chat completions
+let stream = client.chat.completionsStream(
+    model: .gpt4_1_nano,
+    messages: [.user("Write a short story about space exploration")]
+)
+
+for try await chunk in stream {
+    print(chunk.choices.first?.delta.content ?? "")
 }
 ```
 
-## Compatibility
+#### Responses
 
-* macOS 10.15+
-* iOS 13.0+
-* tvOS 13.0+
-* watchOS 6.0+
-* visionOS 1.0+
+```swift
+// Stream responses
+let responses = openAI.responses.createStream(
+    input: "Explain teleportation in simple terms",
+    model: .gpt4_1_nano
+)
+
+for try await response in responses {
+    // Filter text deltas
+    guard response.type == .outputTextDelta else { continue }
+    print(response.delta ?? "")
+}
+```
+
+## What's Implemented:
+
+- [x] [Models](https://platform.openai.com/docs/api-reference/models)
+- [x] [Completions (Deprecated)](https://platform.openai.com/docs/api-reference/completions)
+- [x] [Chat Completions](https://platform.openai.com/docs/api-reference/chat)
+- [x] [Responses](https://platform.openai.com/docs/api-reference/responses)
+- [ ] [Images](https://platform.openai.com/docs/api-reference/images)
+- [ ] [Embeddings](https://platform.openai.com/docs/api-reference/embeddings)
+- [ ] [Audio](https://platform.openai.com/docs/api-reference/audio)
+- [ ] [Files](https://platform.openai.com/docs/api-reference/files)
+- [ ] [Fine-tunes](https://platform.openai.com/docs/api-reference/fine-tunes)
+- [ ] [Moderations](https://platform.openai.com/docs/api-reference/moderations)
 
 ## Dependencies
 
 * EventSource https://github.com/Recouse/EventSource
+* JSONSchema https://github.com/mattt/JSONSchema
+* swift-log https://github.com/apple/swift-log
 
 ## Contributing
 

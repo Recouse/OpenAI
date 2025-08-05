@@ -7,14 +7,15 @@
 
 import EventSource
 import Foundation
-import os.log
 
-public struct BaseRequestHandler: RequestHandler {
+public struct BaseRequestHandler: RequestHandler, Sendable {
     let urlSession: URLSession
     let eventSource: EventSource
     
-    let decoder: JSONDecoder = .openAIDecoder
-    
+    private let decoder: JSONDecoder = .openAIDecoder
+
+    private let logger = PlatformLogger(subsystem: "me.recouse.OpenAI", category: "BaseRequestHandler")
+
     init(urlSession: URLSession = .shared, eventSource: EventSource = EventSource()) {
         self.urlSession = urlSession
         self.eventSource = eventSource
@@ -44,26 +45,29 @@ public struct BaseRequestHandler: RequestHandler {
         let urlRequest = urlRequest(from: request)
         
         return AsyncThrowingStream { continuation in
-            Task {
+            Task { @Sendable in
                 let dataTask = eventSource.dataTask(for: urlRequest)
                 
                 for await event in dataTask.events() {
                     switch event {
                     case .open:
+                        logger.debug("Connection opened for \(urlRequest.url?.absoluteString ?? "(unknown)")")
                         continue
                     case .error(let error):
-                        os_log(.debug, "Received an error: %@", error.localizedDescription)
+                        logger.debug("Received an error: \(error.localizedDescription)")
                         if case let EventSourceError.connectionError(httpStatusCode, response) = error {
                             let openAIError = parseError(from: response, with: httpStatusCode)
                             continuation.finish(throwing: openAIError)
                             break
                         }
                         continue
-                    case .message(let message):
-                        guard let stringData = message.data else {
+                    case .event(let event):
+                        guard let stringData = event.data else {
                             continue
                         }
-                        
+
+                        logger.debug("Received an event for \(urlRequest.url?.absoluteString ?? "(unknown)")")
+
                         if stringData == "[DONE]" {
                             continuation.finish()
                             break
@@ -77,6 +81,7 @@ public struct BaseRequestHandler: RequestHandler {
                             continuation.finish(throwing: error)
                         }
                     case .closed:
+                        logger.debug("Connection closed for \(urlRequest.url?.absoluteString ?? "(unknown)")")
                         continuation.finish()
                     }
                 }
