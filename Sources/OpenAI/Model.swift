@@ -5,7 +5,85 @@
 //  Created by Firdavs Khaydarov on 01/08/2025.
 //
 
+/// Model type to define OpenAI models.
+///
+/// For more information about models and their capabilities visit https://platform.openai.com/docs/models
 public typealias Model = String
+
+// MARK: - o-series
+
+extension Model {
+    /// o1 models think before they answer, producing a long internal chain of thought before responding to the user.
+    ///
+    /// * Context window: 200,000
+    /// * Max output tokens: 100,000
+    public static let o1: Model = "o1"
+
+    /// The o1-pro model uses more compute to think harder and provide consistently better answers.
+    ///
+    /// o1-pro is available in the Responses API only to enable support for multi-turn model
+    /// interactions before responding to API requests, and other advanced API features in the future.
+    ///
+    /// * Context window: 200,000
+    /// * Max output tokens: 100,000
+    public static let o1_pro: Model = "o1-pro"
+
+    /// o3 is a well-rounded and powerful model across domains.
+    ///
+    /// Use it to think through multi-step problems that involve analysis across text, code, and images.
+    ///
+    /// * Context window: 200,000
+    /// * Max output tokens: 100,000
+    public static let o3: Model = "o3"
+
+    /// The o3-pro model uses more compute to think harder and provide consistently better answers.
+    ///
+    /// o3-pro is available in the Responses API only to enable support for multi-turn model
+    /// interactions before responding to API requests, and other advanced API features in the future.
+    /// Since o3-pro is designed to tackle tough problems, some requests may take several minutes to
+    /// finish. To avoid timeouts, try using background mode.
+    ///
+    /// * Context window: 200,000
+    /// * Max output tokens: 100,000
+    public static let o3_pro: Model = "o3-pro"
+
+    /// o3-mini is our newest small reasoning model, providing high intelligence at the same cost
+    /// and latency targets of o1-mini.
+    ///
+    /// o3-mini supports key developer features, like Structured Outputs, function calling, and Batch API.
+    ///
+    /// * Context window: 200,000
+    /// * Max output tokens: 100,000
+    public static let o3_mini: Model = "o3-mini"
+
+    /// o3-deep-research is the most advanced model for deep research, designed to tackle complex,
+    /// multi-step research tasks.
+    ///
+    /// It can search and synthesize information from across the internet as well as from your own data—brought in through MCP connectors.
+    ///
+    /// * Context window: 200,000
+    /// * Max output tokens: 100,000
+    public static let o3_deep_research: Model = "o3-deep-research"
+
+    /// o4-mini is the latest small o-series model.
+    ///
+    /// It's optimized for fast, effective reasoning with exceptionally efficient performance in
+    /// coding and visual tasks.
+    ///
+    /// * Context window: 200,000
+    /// * Max output tokens: 100,000
+    public static let o4_mini: Model = "o4-mini"
+
+    /// o4-mini-deep-research is a faster, more affordable deep research model—ideal for tackling
+    /// complex, multi-step research tasks.
+    ///
+    /// It can search and synthesize information from across the internet as well as from your own
+    /// data, brought in through MCP connectors.
+    ///
+    /// * Context window: 200,000
+    /// * Max output tokens: 100,000
+    public static let o4_mini_deep_research: Model = "o4-mini-deep-research"
+}
 
 // MARK: - GPT-5
 
