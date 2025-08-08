@@ -22,12 +22,6 @@ A modern, type-safe Swift package for seamless integration with OpenAI's API acr
 
 ## Installation
 
-The module name of the package is `OpenAI`. Choose one of the instructions below to install and add the following import statement to your source code.
-
-```swift
-import OpenAI
-```
-
 #### [Xcode Package Dependency](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app)
 
 From Xcode menu: `File` > `Swift Packages` > `Add Package Dependency`
@@ -54,10 +48,6 @@ And then, include "OpenAI" as a dependency for your target:
     ]
 ),
 ```
-
-## Examples
-
-Check out the [Examples](/Examples) directory for a complete sample application demonstrating how to use this package in an app.
 
 ## Basic Usage
 
@@ -107,6 +97,10 @@ for try await response in responses {
     print(response.delta ?? "")
 }
 ```
+
+## Examples
+
+Check out the [Examples](/Examples) directory for a complete sample application demonstrating how to use this package in an app.
 
 ## What's Implemented:
 
