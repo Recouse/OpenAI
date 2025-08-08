@@ -150,6 +150,22 @@ public extension Responses {
                 self.role = role
                 self.content = content
             }
+
+            public static func user(_ content: String) -> InputObject {
+                InputObject(role: .user, content: .text(content))
+            }
+
+            public static func system(_ content: String) -> InputObject {
+                InputObject(role: .system, content: .text(content))
+            }
+
+            public static func developer(_ content: String) -> InputObject {
+                InputObject(role: .developer, content: .text(content))
+            }
+
+            public static func assistant(_ content: String) -> InputObject {
+                InputObject(role: .assistant, content: .text(content))
+            }
         }
     }
 }
