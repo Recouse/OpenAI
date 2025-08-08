@@ -6,6 +6,21 @@
 //
 
 public enum Content: Encodable, Sendable {
+    case text(String)
+    case content(InputContent)
+
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .text(let text):
+            try container.encode(text)
+        case .content(let content):
+            try container.encode(content)
+        }
+    }
+}
+
+public enum InputContent: Encodable, Sendable {
     case inputText(TextInput)
     case inputImage(ImageInput)
     case inputFile(FileInput)

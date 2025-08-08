@@ -14,7 +14,7 @@ public extension Responses {
         /// Specify additional output data to include in the model response.
         public var include: [AdditionalOutput]?
         /// Text, image, or file inputs to the model, used to generate a response.
-        public var input: [Input]?
+        public var input: Input?
         /// A system (or developer) message inserted into the model's context.
         ///
         /// When using along with `previous_response_id`, the instructions from a previous response
@@ -123,7 +123,22 @@ public extension Responses {
             case reasoningEncryptedContent = "reasoning.encrypted_content"
         }
 
-        public struct Input: Encodable, Sendable {
+        public enum Input: Encodable, Sendable {
+            case text(String)
+            case input([InputObject])
+
+            public func encode(to encoder: any Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .text(let text):
+                    try container.encode(text)
+                case .input(let object):
+                    try container.encode(object)
+                }
+            }
+        }
+
+        public struct InputObject: Encodable, Sendable {
             /// The role of the message input. One of `user`, `assistant`, `system`, or `developer`.
             public let role: Role
 
