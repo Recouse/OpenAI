@@ -45,8 +45,8 @@ public extension Responses {
         public var parallelToolCalls: Bool?
         /// The unique ID of the previous response to the model. Use this to create multi-turn conversations.
         public var previousResponseId: String?
-        ///
-        public var prompt: String?
+        /// Reference to a prompt template and its variables.
+        public var prompt: Prompt?
         /// Used by OpenAI to cache responses for similar requests to optimize your cache hit rates.
         public var promptCacheKey: String?
         ///
