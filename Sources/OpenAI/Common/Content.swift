@@ -7,7 +7,7 @@
 
 public enum Content: Encodable, Sendable {
     case text(String)
-    case content(InputContent)
+    case content([InputContent])
 
     public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()

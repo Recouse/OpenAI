@@ -144,9 +144,9 @@ public extension Responses {
 
             /// Text, image, or audio input to the model, used to generate a response. Can also contain
             /// previous assistant responses.
-            public let content: [Content]
+            public let content: Content
 
-            public init(role: Role, content: [Content]) {
+            public init(role: Role, content: Content) {
                 self.role = role
                 self.content = content
             }
