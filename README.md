@@ -97,7 +97,7 @@ for try await chunk in stream {
 ```swift
 // Stream responses
 let responses = openAI.responses.createStream(
-    input: "Explain teleportation in simple terms",
+    input: .text("Explain teleportation in simple terms"),
     model: .gpt4_1_nano
 )
 
