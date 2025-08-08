@@ -55,6 +55,10 @@ And then, include "OpenAI" as a dependency for your target:
 ),
 ```
 
+## Examples
+
+Check out the [Examples](/Examples) directory for a complete sample application demonstrating how to use this package in an app.
+
 ## Basic Usage
 
 ```swift
