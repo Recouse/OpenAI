@@ -7,6 +7,36 @@
 
 public typealias Model = String
 
+// MARK: - GPT-5
+
+extension Model {
+    /// GPT-5 is a flagship model for coding, reasoning, and agentic tasks across domains.
+    ///
+    /// * Context window: 400,000
+    /// * Max output tokens: 128,000
+    public static let gpt5: Model = "gpt-5"
+
+    /// GPT-5 mini is a faster, more cost-efficient version of GPT-5. It's great for well-defined
+    /// tasks and precise prompts.
+    ///
+    /// * Context window: 400,000
+    /// * Max output tokens: 128,000
+    public static let gpt5_mini: Model = "gpt-5-mini"
+
+    /// GPT-5 Nano is the fastest, cheapest version of GPT-5. It's great for summarization and
+    /// classification tasks.
+    ///
+    /// * Context window: 400,000
+    /// * Max output tokens: 128,000
+    public static let gpt5_nano: Model = "gpt-5-nano"
+
+    /// GPT-5 Chat points to the GPT-5 snapshot currently used in ChatGPT.
+    ///
+    /// * Context window: 400,000
+    /// * Max output tokens: 128,000
+    public static let gpt5_chat: Model = "gpt-5-chat-latest"
+}
+
 // MARK: - GPT-4.1
 
 extension Model {
