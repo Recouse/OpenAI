@@ -37,6 +37,24 @@ extension Model {
     public static let gpt5_chat: Model = "gpt-5-chat-latest"
 }
 
+// MARK: - Open weight models
+
+extension Model {
+    /// `gpt-oss-120b` is the most powerful open weight model, which fits into a single H100 GPU
+    /// (117B parameters with 5.1B active parameters).
+    ///
+    /// * Context window: 131,072
+    /// * Max output tokens: 131,072
+    public static let gpt_oss_120b = "gpt-oss-120b"
+
+    /// `gpt-oss-20b` is a medium-sized open model for low latency, local, or specialized use-cases
+    /// (21B parameters with 3.6B active parameters).
+    ///
+    /// * Context window: 131,072
+    /// * Max output tokens: 131,072
+    public static let gpt_oss_20b = "gpt-oss-20b"
+}
+
 // MARK: - GPT-4.1
 
 extension Model {
