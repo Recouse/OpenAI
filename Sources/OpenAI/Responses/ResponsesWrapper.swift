@@ -12,7 +12,7 @@ public struct ResponsesWrapper {
     public func create(
         background: Bool? = nil,
         include: [Responses.Body.AdditionalOutput]? = nil,
-        input: String? = nil,
+        input: [Responses.Body.Input]? = nil,
         instructions: String? = nil,
         maxOutputTokens: Int? = nil,
         maxToolCalls: Int? = nil,
@@ -65,7 +65,7 @@ public struct ResponsesWrapper {
     public func createStream(
         background: Bool? = nil,
         include: [Responses.Body.AdditionalOutput]? = nil,
-        input: String? = nil,
+        input: [Responses.Body.Input]? = nil,
         instructions: String? = nil,
         maxOutputTokens: Int? = nil,
         maxToolCalls: Int? = nil,

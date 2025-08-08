@@ -8,13 +8,13 @@
 import Foundation
 
 public extension Responses {
-    struct Body: Codable {
+    struct Body: Encodable {
         /// Whether to run the model response in the background.
         public var background: Bool?
         /// Specify additional output data to include in the model response.
         public var include: [AdditionalOutput]?
-        ///
-        public var input: String?
+        /// Text, image, or file inputs to the model, used to generate a response.
+        public var input: [Input]?
         /// A system (or developer) message inserted into the model's context.
         ///
         /// When using along with `previous_response_id`, the instructions from a previous response
@@ -121,6 +121,15 @@ public extension Responses {
             /// Responses API statelessly (like when the store parameter is set to `false`, or when
             /// an organization is enrolled in the zero data retention program).
             case reasoningEncryptedContent = "reasoning.encrypted_content"
+        }
+
+        public struct Input: Encodable, Sendable {
+            /// The role of the message input. One of `user`, `assistant`, `system`, or `developer`.
+            public let role: Role
+
+            /// Text, image, or audio input to the model, used to generate a response. Can also contain
+            /// previous assistant responses.
+            public let content: [Content]
         }
     }
 }
