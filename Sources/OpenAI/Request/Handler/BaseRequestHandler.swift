@@ -14,7 +14,7 @@ import FoundationNetworking
 public struct BaseRequestHandler: RequestHandler, Sendable {
     let urlSession: URLSession
     let eventSource: EventSource
-    
+
     private let decoder: JSONDecoder = .openAIDecoder
 
     private let logger = PlatformLogger(subsystem: "me.recouse.OpenAI", category: "BaseRequestHandler")
@@ -23,8 +23,8 @@ public struct BaseRequestHandler: RequestHandler, Sendable {
         self.urlSession = urlSession
         self.eventSource = eventSource
     }
-    
-    public func perform<T>(for model: T.Type, with request: Request) async throws -> T where T: Decodable {
+
+    public func perform<T>(for model: T.Type, with request: Request) async throws -> T where T: Decodable, T: Sendable {
         let urlRequest = urlRequest(from: request)
         let (data, response) = try await urlSession.data(for: urlRequest)
         
@@ -40,13 +40,13 @@ public struct BaseRequestHandler: RequestHandler, Sendable {
         let parsed = try decoder.decode(T.self, from: data)
         return parsed
     }
-    
+
     public func stream<T>(
         for model: T.Type,
         with request: Request
-    ) -> AsyncThrowingStream<T, Error> where T: Decodable {
+    ) -> AsyncThrowingStream<T, Error> where T: Decodable, T: Sendable {
         let urlRequest = urlRequest(from: request)
-        
+
         return AsyncThrowingStream { continuation in
             Task { @Sendable in
                 let dataTask = eventSource.dataTask(for: urlRequest)
@@ -91,7 +91,7 @@ public struct BaseRequestHandler: RequestHandler, Sendable {
             }
         }
     }
-    
+
     private func urlRequest(from request: Request) -> URLRequest {
         var url = URL(string: "https://\(request.host)")!
         if #available(macOS 13.0, iOS 16.0, tvOS 16.0, watchOS 9.0, *) {
@@ -109,7 +109,7 @@ public struct BaseRequestHandler: RequestHandler, Sendable {
         
         return urlRequest
     }
-    
+
     private func parseError(from data: Data, with httpStatusCode: Int) -> OpenAIError {
         do {
             let error = try decoder.decode(APIError.self, from: data)
