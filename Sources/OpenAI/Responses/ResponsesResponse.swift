@@ -227,7 +227,7 @@ public extension Responses {
             /// The status of the item. One of `in_progress`, `completed`, or `incomplete`.
             ///
             /// Populated when items are returned via API.
-            public let status: String
+            public let status: String?
 
             /// Reasoning summary content.
             public let summary: [Summary]
