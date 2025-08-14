@@ -86,6 +86,20 @@ public extension Responses {
         public let truncation: TruncationStrategy?
         public let usage: Usage
 
+        /// Convenience property that contains the aggregated text output from all `output_text`
+        /// items in the `output` array, if any are present.
+        public var outputText: String? {
+            output.reduce(into: "") { partialResult, output in
+                if output.type == "message" {
+                    partialResult += output.content.reduce(into: "") { contentPartialResult, content in
+                        if content.type == "output_text" {
+                            contentPartialResult += content.text
+                        }
+                    }
+                }
+            }
+        }
+
         public struct IncompleteDetails: Decodable, Sendable {
             public let reason: String
         }
