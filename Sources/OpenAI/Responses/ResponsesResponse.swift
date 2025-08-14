@@ -66,7 +66,8 @@ public extension Responses {
         public let error: ResponseError?
         public let id: String
         public let incompleteDetails: IncompleteDetails?
-        public let instructions: String?
+        // TODO: Implement later
+//        public let instructions: String?
         public let maxOutputTokens: Int?
         public let maxToolCalls: Int?
         public let metadata: [String: String]
