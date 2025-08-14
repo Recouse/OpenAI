@@ -93,7 +93,7 @@ public extension Responses {
                 if output.type == "message" {
                     partialResult += output.content.reduce(into: "") { contentPartialResult, content in
                         if content.type == "output_text" {
-                            contentPartialResult += content.text
+                            contentPartialResult += content.text ?? ""
                         }
                     }
                 }
@@ -113,7 +113,7 @@ public extension Responses {
 
             public struct Content: Decodable, Sendable {
                 public let type: String
-                public let text: String
+                public let text: String?
             }
         }
 
