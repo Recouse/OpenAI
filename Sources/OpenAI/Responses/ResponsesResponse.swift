@@ -20,6 +20,7 @@ public extension Responses {
 
         public enum ResponseType: String, Decodable, Sendable {
             case created = "response.created"
+            case queued = "response.queued"
             case inProgress = "response.in_progress"
             case completed = "response.completed"
             case outputTtemAdded = "response.output_item.added"
@@ -27,6 +28,7 @@ public extension Responses {
             case contentPartAdded = "response.content_part.added"
             case contentPartDone = "response.content_part.done"
             case outputTextDelta = "response.output_text.delta"
+            case outputTextAnnotationAdded = "response.output_text.annotation.added"
             case outputTextDone = "response.output_text.done"
             case refusalDelta = "response.refusal.delta"
             case refusalDone = "response.refusal.done"
