@@ -28,6 +28,11 @@ public extension Responses {
             case contentPartDone = "response.content_part.done"
             case outputTextDelta = "response.output_text.delta"
             case outputTextDone = "response.output_text.done"
+            case refusalDelta = "response.refusal.delta"
+            case refusalDone = "response.refusal.done"
+            case fileSearchSallInProgress = "response.file_search_call.in_progress"
+            case fileSearchSallSearching = "response.file_search_call.searching"
+            case fileSearchSallCompleted = "response.file_search_call.completed"
         }
 
         enum CodingKeys: CodingKey {
