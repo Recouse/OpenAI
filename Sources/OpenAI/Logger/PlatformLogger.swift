@@ -27,10 +27,12 @@ package struct PlatformLogger {
     }
 
     package func debug(_ message: String) {
+        #if DEBUG
         #if canImport(os)
         os_log(.debug, log: log, "%@", message)
         #else
         logger.debug("\(message)")
+        #endif
         #endif
     }
 }
